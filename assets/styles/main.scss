@@ -1,0 +1,28 @@
+.container {
+  max-width: 1200px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: 0 auto;
+}
+
+.input-w {
+  border-radius: 13px;
+  border: 2px solid var(--var-blue);
+  & input {
+    border-radius: 13px;
+    background: transparent;
+    padding: 7px 10px;
+    width: 100%;
+  }
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--var-blue-dark)
+}
+
+
+main {
+  padding-top: 30px;
+}

@@ -49,18 +49,27 @@ const props = defineProps({
     display: none;
     transition: .2s;
   }
-  &_arrow {
-    & .icon-arrow {
-        & path {
-          transition: .2s;
-        }
-        display: block;
-    }
-  }
   &_blue-border {
     color: var(--var-blue);
     border: 2px solid var(--var-blue);
     &:hover {
+    }
+  }
+  &_brown-border {
+    color: var(--var-brown);
+    border: 2px solid var(--var-brown);
+    &:hover {
+    }
+  }
+  &_white {
+    background: #fff;
+    color: #000;
+    border-radius: 20px;
+    padding: 13px 23px;
+    border: 1px solid transparent;
+    &:hover {
+      color: var(--var-blue);
+      border: 1px solid var(--var-blue);
     }
   }
 

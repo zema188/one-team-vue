@@ -1,3 +1,11 @@
+<script setup>
+const props = defineProps({
+    objects: {
+        type: Array,
+        required: true
+    },
+})
+</script>
 <template>
     <swiper
       :slides-per-view="3.2"
@@ -6,9 +14,10 @@
       @slideChange="onSlideChange"
     >
       <swiper-slide class="slide"
-        v-for="(card, index) in [1,2,3,4,5,6,7]" :key="index"
+        v-for="(card, index) in props.objects" :key="index"
       >
         <catalog-card
+          :object="card"
         />
       </swiper-slide>
     </swiper>

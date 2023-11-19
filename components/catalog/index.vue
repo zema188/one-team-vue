@@ -1,24 +1,21 @@
 <script setup>
 const props = defineProps({
+    data: {
+        type: Object,
+        required: true
+    },
     title: {
         type: String,
     },
     subtitle: {
         type: String,
+    },
+    filterStyle: {
+        type: Object,
+        required: false,
     }
 })
 
-const filterList = ref([
-    {
-        text: 'Турция',
-        quantity: null,
-        active: true
-    },
-    {
-        text: 'Северный Кипр',
-        quantity: null,
-    }
-])
 </script>
 
 <template>
@@ -32,9 +29,12 @@ const filterList = ref([
             </template>
         </layouts-block-header>
         <layouts-filter-list
-            :list="filterList"
+            :list="props.data.filterList"
+            :style="props.filterStyle"
         />
-        <catalog-swiper/>
+        <catalog-swiper
+            :objects="props.data.objects"
+        />
     </div>
 </template>
 

@@ -1,16 +1,28 @@
+<script setup>
+const props = defineProps({
+    object: {
+        type: Object,
+        required: true
+    },
+})
+</script>
+
 <template>
     <div class="card">
         <img class="card__pic" src="@/assets/images/2.webp">
         <div class="card__header">
             <div class="card__hashtags">
                 <div class="card__hashtag _blue">
-                    Аланья
+                    {{ props.object.country }}
+                    <!-- Аланья -->
                 </div>
                 <div class="card__hashtag">
-                    Каргыджак
+                    {{  props.object.region }}
+                    <!-- Каргыджак -->
                 </div>
                 <div class="card__hashtag">
-                    4143 $/м²
+                    {{  props.object.squareMeter }}
+                    <!-- 4143 $/м² -->
                 </div>
             </div>
             <div class="card__favorite">
@@ -23,29 +35,33 @@
         </div>
         <div class="card__text">
             <p>
-                Richmond Villas
+                {{  props.object.name }}
+                <!-- Richmond Villas -->
             </p>
             <span>
-                от 268 - до 377 м 
+                {{  props.object.square }}
+                <!-- от 268 - до 377 м  -->
             </span>
         </div>
         <div class="card__footer">
             <p class="card__footer-price">
-                от 1110439 $
+                {{  props.object.price }}
+                <!-- от 1110439 $ -->
             </p>
             <div class="card__footer-info">
                 <span class="dark-blue">
-                    № 291
+                    № {{  props.object.id }}
+                    <!-- № 291 -->
                 </span>
                 <span class="green">
-                    16
+                    {{  props.object.quantity }}
+                    <!-- 16 -->
                 </span>
             </div>
         </div>
     </div>
 </template>
-<script>
-</script>
+
     
 <style lang="scss" scoped>
 .card {

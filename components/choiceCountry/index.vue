@@ -1,8 +1,12 @@
 <script setup>
 const props = defineProps({
-    list: {
+    data: {
         type: Object,
         required: true
+    },
+    filterStyle: {
+        type: Object,
+        required: false,
     }
 })
 </script>
@@ -18,9 +22,12 @@ const props = defineProps({
             </div>
         </div>
         <layouts-filter-list
-            :list="list"
+            :list="props.data.filterList"
+            :style="props.filterStyle"
         />
-        <choice-country-swiper/>
+        <choice-country-swiper
+            
+        />
     </div>
 </template>
 

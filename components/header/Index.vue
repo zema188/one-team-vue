@@ -50,12 +50,12 @@
                     </p>
                 </div>
                 <nuxt-link :to="'/'">
-                    <icons-logo
+                    <icons-base
                         class="header__logo"
                         width="140"
                         height="50"
                         icon-name="logo"
-                    ><icons-logo /></icons-logo>
+                    ><icons-logo /></icons-base>
                 </nuxt-link>
                 <ul class="header__bottom-action">
                     <li>

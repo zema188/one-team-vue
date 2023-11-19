@@ -3,6 +3,10 @@ const props = defineProps({
     list: {
         type: Object,
         required: true,
+    },
+    style: {
+        type: Object,
+        required: false,
     }
 })
 </script>
@@ -10,9 +14,9 @@ const props = defineProps({
 <template>
     <div class="filter__list">
         <layouts-button
-            v-for="(btn, index) in list" :key="index"
+            v-for="(btn, index) in list"    :key="index"
             class="filter__list-btn"
-            :styles="[{'btn_blue-border': btn.active}]"
+            :styles="{ [`btn${props.style.color}`]: btn.active }"
             :type="'button'"
         >
         {{ btn.text }}

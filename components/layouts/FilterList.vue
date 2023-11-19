@@ -12,7 +12,7 @@ const props = defineProps({
         <layouts-button
             v-for="(btn, index) in list" :key="index"
             class="filter__list-btn"
-            :styles="['btn_blue-border']"
+            :styles="[{'btn_blue-border': btn.active}]"
             :type="'button'"
         >
         {{ btn.text }}

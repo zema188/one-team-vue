@@ -1,15 +1,10 @@
 <script setup>
-// const filterList = ref(['Россия','Турция','Кипр','ОАЭ','Тайланд','Бали','Черногория','Испания',])
-const filterList = ref([
-    {
-        text: 'Турция',
-        quantity: null,
-    },
-    {
-        text: 'Северный Кипр',
-        quantity: null,
+const props = defineProps({
+    list: {
+        type: Object,
+        required: true
     }
-])
+})
 </script>
  
 <template>
@@ -23,7 +18,7 @@ const filterList = ref([
             </div>
         </div>
         <layouts-filter-list
-            :list="filterList"
+            :list="list"
         />
         <choice-country-swiper/>
     </div>

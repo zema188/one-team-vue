@@ -32,7 +32,6 @@ const props = defineProps({
 <style lang="scss">
 
 .btn {
-  font-family: Roboto;
   font-size: 15px;
   font-style: normal;
   font-weight: 500;
@@ -55,6 +54,13 @@ const props = defineProps({
     &:hover {
     }
   }
+  &_blue {
+    color: #fff;
+    background: var(--var-blue);
+    &:hover {
+
+    }
+  }
   &_brown-border {
     color: var(--var-brown);
     border: 2px solid var(--var-brown);
@@ -70,6 +76,43 @@ const props = defineProps({
     &:hover {
       color: var(--var-blue);
       border: 1px solid var(--var-blue);
+    }
+  }
+  &_transparent {
+    background-color: rgba(3, 41, 105, 0);
+    border-color: rgb(204, 204, 204);
+    color: rgb(255, 255, 255)!important;
+    box-shadow: 0px 0px 9px 0px rgba(255, 255, 255, 0.6);
+    padding: 20px;
+    border-radius: 13px;
+    display: block;
+    transition: .2s;
+    &.red {
+        box-shadow: 0px 0px 9px 0px var(--var-red);
+        & .icon-pdf {
+            & svg {
+                fill: var(--var-red);
+            }
+        }
+    }
+    &.purple {
+        box-shadow: 0px 0px 9px 0px var(--var-purple);
+        & .icon-pdf {
+            & svg {
+                fill: var(--var-purple);
+            }
+        }
+    }
+    &.dark-blue {
+        box-shadow: 0px 0px 9px 0px rgb(61, 61, 226);
+        & .icon-pdf {
+            & svg {
+                fill: rgb(61, 61, 226);
+            }
+        }
+    }
+    &:hover {
+        transform: scale(1.1);
     }
   }
 

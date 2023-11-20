@@ -13,7 +13,7 @@
                             placeholder="Поиск по сайту"
                         >
                     </div>
-                    <header-lang/>
+                    <layouts-lang/>
                     <icons-base
                         class="header__phone"
                         width="25"
@@ -52,8 +52,8 @@
                 <nuxt-link :to="'/'">
                     <icons-base
                         class="header__logo"
-                        width="140"
-                        height="50"
+                        width="112"
+                        height="100"
                         icon-name="logo"
                     ><icons-logo /></icons-base>
                 </nuxt-link>

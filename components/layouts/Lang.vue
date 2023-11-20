@@ -34,6 +34,7 @@ let langListIshidden = ref(false)
 
     &__lang {
         position: relative;
+        width: fit-content;
     }
 
     &__lang-preview {
@@ -59,6 +60,7 @@ let langListIshidden = ref(false)
     &__lang-item {
         text-align: center;
         cursor: pointer;
+        color: #000;
     }
 }
 

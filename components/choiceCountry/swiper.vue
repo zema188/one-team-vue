@@ -1,3 +1,29 @@
+<script>
+  import { Swiper, SwiperSlide } from 'swiper/vue';
+
+  // Import Swiper styles
+  import 'swiper/css';
+
+  export default {
+    components: {
+      Swiper,
+      SwiperSlide,
+    },
+    setup() {
+      const onSwiper = (swiper) => {
+        console.log(swiper);
+      };
+      const onSlideChange = () => {
+        console.log('slide change');
+      };
+      return {
+        onSwiper,
+        onSlideChange,
+      };
+    },
+  };
+</script>
+
 <template>
   <swiper
     :slides-per-view="1"
@@ -75,32 +101,7 @@
     </swiper-slide>
   </swiper>
 </template>
-<script>
-  import { Swiper, SwiperSlide } from 'swiper/vue';
 
-  // Import Swiper styles
-  import 'swiper/css';
-
-  export default {
-    components: {
-      Swiper,
-      SwiperSlide,
-    },
-    setup() {
-      const onSwiper = (swiper) => {
-        console.log(swiper);
-      };
-      const onSlideChange = () => {
-        console.log('slide change');
-      };
-      return {
-        onSwiper,
-        onSlideChange,
-      };
-    },
-  };
-</script>
-  
 <style lang="scss" scoped>
 .slide__block {
   position: relative;

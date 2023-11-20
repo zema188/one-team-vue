@@ -1,0 +1,3 @@
+<template>
+    <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24" id="Time"><g fill="#000000" class="color000000 svgShape"><circle cx="12" cy="12" r="11.5" fill="none" stroke="#fdfeff" stroke-linecap="round" stroke-linejoin="round" class="colorStroke303c42 svgStroke"/><circle cx="12" cy="12" r=".5" fill="none" stroke="#fdfeff" stroke-linecap="round" stroke-linejoin="round" class="colorStroke303c42 svgStroke"/><path fill="none" stroke="#fdfeff" stroke-linecap="round" stroke-linejoin="round" d="M12 3.5V12l4.5 4.5" class="colorStroke303c42 svgStroke"/></g></svg>
+</template>

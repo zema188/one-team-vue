@@ -105,6 +105,73 @@ const instructions = ref({
     ]
 })
 
+const catalogLocations = ref({
+    objects: [
+        {
+            name: 'Аланья',
+            date: '19.11.2023',
+        },
+        {
+            name: 'Анталья',
+            date: '19.11.2023',
+        },
+        {
+            name: 'Аланья',
+            date: '19.11.2023',
+        },
+        {
+            name: 'Анталья',
+            date: '19.11.2023',
+        },
+    ],
+    filterList: [
+        {
+            text: 'Турция',
+            quantity: null,
+            active: true
+        },
+        {
+            text: 'Кипр',
+            quantity: null,
+        },
+        {
+            text: 'ОАЭ',
+            quantity: null,
+        }
+    ],
+    regions: [
+        'Южное побережье',
+        'Западное побережье',
+        'Северное побережье',
+    ],
+})
+
+const catalogPrice = ref({
+    objects: [
+        {
+            price: '50 000 - 100 000$',
+        },
+        {
+            price: '100 000 - 250 000$',
+        },
+        {
+            price: 'от 250 000$',
+        },
+    ],
+    filterList: [
+        {
+            text: 'до 350 000 $ ',
+            quantity: null,
+            active: true
+        },
+        {
+            text: 'Премиум',
+            quantity: null,
+        },
+    ],
+})
+
+
 </script>
 
 <template>
@@ -130,6 +197,20 @@ const instructions = ref({
         :data="instructions"
         :filterStyle="{color: '_brown-border'}"
     />
+    <catalog-location
+        :title="'Свежие каталоги по локациям'"
+        :subtitle="'Обновлено 19.11.2023'"
+        :data="catalogLocations"
+    />
+    <catalog-val
+        :title="'Свежие каталоги по локациям'"
+        :subtitle="'Обновлено 19.11.2023'"
+        :data="catalogPrice"
+    />
+    <form-specialist/>
+    <why/>
+    <algorithm/>
+    <form-expert/>
 </template>
 
 <style lang="scss" scoped>

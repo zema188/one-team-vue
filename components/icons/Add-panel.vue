@@ -1,0 +1,3 @@
+<template>
+    <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24" id="AddPanel"><path fill="#1d8aff" d="M21 4h-1V3a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0V6h1a1 1 0 0 0 0-2Z" class="color6563ff svgShape"/><rect width="6" height="13" x="2" y="9" fill="#d8ebff" rx="1" class="colord8d8ff svgShape"/><rect width="6" height="20" x="8" y="2" fill="#1d8aff" rx="1" class="color6563ff svgShape"/><rect width="6" height="11" x="14" y="11" fill="#b1d7ff" rx="1" class="colorb2b1ff svgShape"/></svg>
+</template>

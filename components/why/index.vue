@@ -9,12 +9,13 @@
         </p>
         <div class="why__top">
             <div class="why__top-item">
-                <icons-base
+                <!-- <icons-base
                     class="icon"
                     width="260"
                     height="260"
                     icon-name="DigitalProductManager"
-                ><icons-DigitalProductManager /></icons-base>
+                ><icons-DigitalProductManager /></icons-base> -->
+                <img src="@/assets/images/digital_product_manager.svg">
                 <p class="why__top-item-subtitle">
                     Информация о налогах
                 </p>
@@ -24,12 +25,13 @@
                 </p>
             </div>
             <div class="why__top-item">
-                <icons-base
+                <!-- <icons-base
                     class="icon"
                     width="260"
                     height="260"
                     icon-name="FrontEndEngineer"
-                ><icons-FrontEndEngineer /></icons-base>
+                ><icons-FrontEndEngineer /></icons-base> -->
+                <img src="@/assets/images/front_end_engineer.svg">
                 <p class="why__top-item-subtitle">
                     Объективная оценка стран
                 </p>
@@ -39,12 +41,13 @@
                 </p>
             </div>
             <div class="why__top-item">
-                <icons-base
+                <!-- <icons-base
                     class="icon"
                     width="260"
                     height="260"
                     icon-name="BackEndEngineer"
-                ><icons-BackEndEngineer /></icons-base>
+                ><icons-BackEndEngineer /></icons-base> -->
+                <img src="@/assets/images/back_end_engineer.svg">
                 <p class="why__top-item-subtitle">
                     Надежные партнеры
                 </p>
@@ -107,10 +110,10 @@
         padding-right: 30px;
         background: rgb(247,247,247);
         border-radius: 20px;
-        & .icon {
+        & .icon, img {
             margin: 0 auto;
             display: block;
-            margin-top: -70px;
+            margin-top: -30px;
             pointer-events: none;
         }
     }
@@ -119,7 +122,7 @@
         font-weight: bold;
         margin-bottom: 10px;
         font-size: 17px;
-        margin-top: -50px;
+        margin-top: -30px;
     }
 
     &__top-item-desc {

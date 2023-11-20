@@ -58,7 +58,7 @@
                     ><icons-logo /></icons-base>
                 </nuxt-link>
                 <ul class="header__bottom-action">
-                    <li>
+                    <li class="active">
                         Выбрать регион
                     </li>
                     <li>
@@ -162,6 +162,19 @@
         align-items: center;
         font-size: 15px;
         letter-spacing: -1px;
+        & li {
+            transition: .2s;
+            cursor: pointer;
+            &:hover {
+                color: var(--var-blue-dark);
+            }
+            &.active {
+                color: var(--var-blue);
+                &:hover {
+                    color: var(--var-blue);
+                }
+            }
+        }
     }
 }
 

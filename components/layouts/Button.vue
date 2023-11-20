@@ -52,19 +52,25 @@ const props = defineProps({
     color: var(--var-blue);
     border: 2px solid var(--var-blue);
     &:hover {
+      color: #fff;
+      background: var(--var-blue);
     }
   }
   &_blue {
     color: #fff;
     background: var(--var-blue);
+    &.border-white {
+      border: 2px solid rgb(211, 211, 211);
+    }
     &:hover {
-
+      background: #1e4cfb;
     }
   }
   &_brown-border {
     color: var(--var-brown);
     border: 2px solid var(--var-brown);
     &:hover {
+
     }
   }
   &_white {
@@ -114,6 +120,11 @@ const props = defineProps({
     &:hover {
         transform: scale(1.1);
     }
+  }
+  &_black {
+    background-color: rgb(0, 0, 0);
+    border: 2px solid rgb(211, 211, 211);
+    color: rgb(255, 255, 255);
   }
 
 }

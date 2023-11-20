@@ -40,6 +40,26 @@ const bestСhoice = ref({
             id: '292',
             quantity: '20',
         },
+        {
+            country: 'Аланья',
+            region: 'Каргыджак',
+            squareMeter: '4143 $/м²',
+            name: 'Richmond Villas',
+            square: 'от 268 - до 377 м',
+            price: 'от 1110439 $',
+            id: '291',
+            quantity: '16',
+        },
+        {
+            country: 'Аланья',
+            region: 'Каргыджак',
+            squareMeter: '4143 $/м²',
+            name: 'Richmond Villas',
+            square: 'от 268 - до 377 м',
+            price: 'от 1110439 $',
+            id: '292',
+            quantity: '20',
+        },
     ],
     filterList: [
         {
@@ -171,41 +191,54 @@ const catalogPrice = ref({
     ],
 })
 
-
+const changeCatalog = (btn, catalog) => {
+    catalog.filterList.forEach(el => {
+        if(el.active) {
+            el.active = false
+        }
+    });
+    btn.active = true
+}
 </script>
 
 <template>
     <choice-country
         :data="countries"
         :filterStyle="{color: '_blue-border'}"
+        @changeFilter="(btn) => changeCatalog(btn, countries)"
     />
     <catalog
         :title="'Лучший выбор на 17 ноября'"
         :subtitle="'Выберите направление'"
         :data="bestСhoice"
         :filterStyle="{color: '_blue-border'}"
+        @changeFilter="(btn) => changeCatalog(btn, bestСhoice)"
     />
     <catalog
         :title="'Премьеры рынка'"
         :subtitle="'Выберите направление'"
         :data="premieres"
         :filterStyle="{color: '_blue-border'}"
+        @changeFilter="(btn) => changeCatalog(btn, premieres)"
     />
     <instruction
         :title="'Инструкции и чек-листы'"
         :subtitle="'По городам'"
         :data="instructions"
         :filterStyle="{color: '_brown-border'}"
+        @changeFilter="(btn) => changeCatalog(btn, instructions)"
     />
     <catalog-location
         :title="'Свежие каталоги по локациям'"
         :subtitle="'Обновлено 19.11.2023'"
         :data="catalogLocations"
+        @changeFilter="(btn) => changeCatalog(btn, catalogLocations)"
     />
     <catalog-val
         :title="'Свежие каталоги по локациям'"
         :subtitle="'Обновлено 19.11.2023'"
         :data="catalogPrice"
+        @changeFilter="(btn) => changeCatalog(btn, catalogPrice)"
     />
     <form-specialist/>
     <why/>

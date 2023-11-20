@@ -18,8 +18,17 @@
     display: flex;
     gap: 15px;
     & a {
+        transition: .2s;
         &.router-link-active {
             color: var(--var-blue);
+            &:hover {
+                color: var(--var-blue);
+                opacity: 1;
+            }
+        }
+        &:hover {
+            color: var(--var-blue);
+            opacity: 0.5;
         }
     }
 }

@@ -1,5 +1,27 @@
 <script setup>
 let langListIshidden = ref(false)
+let activeLang = ref("RU")
+const langs = ref([
+    'EN', 'DE', 'TR',
+])
+const changeLang = (lang) => {
+    const indexOfChangerLang = langs.value.indexOf(lang)
+    langs.value[indexOfChangerLang] = activeLang.value
+    activeLang.value = lang
+    langListIshidden.value = false
+}
+
+// onMounted(() => {
+//     document.addEventListener('click', function(e) {
+//         const target = e.target
+//         if(!target.closest('.header__lang')) {
+//             langListIshidden.value = false
+//         }
+//     })
+// })
+
+
+
 </script>
 
 <template>
@@ -7,23 +29,21 @@ let langListIshidden = ref(false)
         <div class="header__lang-preview"
             @click="langListIshidden = !langListIshidden"
         >
-            RU
+            {{ activeLang }}
             <icons-base
-                class="header__phone"
+                class="icon"
+                :class="{active: langListIshidden}"
                 width="20"
                 height="20"
                 icon-name="arrow"
             ><icons-arrow /></icons-base>
         </div>
         <div class="header__lang-list" v-if="langListIshidden">
-            <div class="header__lang-item">
-                EN
-            </div>
-            <div class="header__lang-item">
-                DE
-            </div>
-            <div class="header__lang-item">
-                TR
+            <div class="header__lang-item"
+                v-for="lang of langs" :key="lang"
+                @click="changeLang(lang)"
+            >
+                {{ lang }}
             </div>
         </div>
     </div>
@@ -33,8 +53,14 @@ let langListIshidden = ref(false)
 .header {
 
     &__lang {
+        width: 55px;
         position: relative;
-        width: fit-content;
+        & .icon {
+            transition: .2s;
+            &.active {
+                transform: rotate(180deg);
+            }
+        }
     }
 
     &__lang-preview {

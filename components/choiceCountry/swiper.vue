@@ -53,7 +53,7 @@
         </div>
       </div>
       <div class="slide__block">
-        <img class="pic" src="@/assets/images/1_6.webp">
+        <img class="pic" src="@/assets/images/1_7.webp">
         <div class="info">
           <div class="subtitle">
             New book

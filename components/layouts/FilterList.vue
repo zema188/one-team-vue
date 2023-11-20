@@ -9,15 +9,17 @@ const props = defineProps({
         required: false,
     }
 })
+const emit = defineEmits('changeFilter')
 </script>
 
 <template>
     <div class="filter__list">
         <layouts-button
-            v-for="(btn, index) in list"    :key="index"
+            v-for="(btn, index) in list" :key="index"
             class="filter__list-btn"
             :styles="{ [`btn${props.style.color}`]: btn.active }"
             :type="'button'"
+            @click="emit('changeFilter', btn)"
         >
         {{ btn.text }}
         <span>
@@ -40,6 +42,13 @@ const props = defineProps({
     }
 
     &__list-btn {
+        border: 2px solid transparent;
+        &.btn_blue-border {
+            border: 2px solid var(--var-blue);
+        }
+        &.btn_brown-border {
+            border: 2px solid var(--var-brown);
+        }
         & span {
             opacity: 0.5;
         }

@@ -13,6 +13,7 @@ const props = defineProps({
         required: true
     }
 })
+const emit = defineEmits('changeFilter')
 
 const filterStyle = ref({color: '_blue-border'})
 </script>
@@ -30,6 +31,7 @@ const filterStyle = ref({color: '_blue-border'})
         <layouts-filter-list
             :list="data.filterList"
             :style="filterStyle"
+            @changeFilter="(btn) => emit('changeFilter', btn)"
         />
         <catalog-val-swiper
             :objects="data.objects"

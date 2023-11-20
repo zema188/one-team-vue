@@ -15,7 +15,7 @@ const props = defineProps({
         required: false,
     }
 })
-
+const emit = defineEmits('changeFilter')
 </script>
 
 <template>
@@ -31,6 +31,7 @@ const props = defineProps({
         <layouts-filter-list
             :list="props.data.filterList"
             :style="props.filterStyle"
+            @changeFilter="(btn) => emit('changeFilter', btn)"
         />
         <catalog-swiper
             :objects="props.data.objects"

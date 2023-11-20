@@ -14,6 +14,7 @@ const props = defineProps({
     }
 })
 const filterStyle = ref({color: '_blue-border'})
+const emit = defineEmits('changeFilter')
 </script>
 
 <template>
@@ -29,6 +30,7 @@ const filterStyle = ref({color: '_blue-border'})
         <layouts-filter-list
             :list="props.data.filterList"
             :style="filterStyle"
+            @changeFilter="(btn) => emit('changeFilter', btn)"
         />
         <div class="filter-regions">
             <layouts-button

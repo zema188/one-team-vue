@@ -7,6 +7,28 @@
     <about-advantages/>
     <div class="about__countrys container">
         <p class="about__title">
+            Мир без границ: помогаем получить 
+            <span>
+                второй паспорт
+            </span>
+        </p>
+        <p>
+            Мы предлагаем актуальные программы получения гражданства для инвесторов,
+        </p>
+        <p>
+            заинтересованных в проживании за рубежом и
+        </p>
+        <p>
+            ведении международного бизнеса.
+        </p>
+        <div class="about__countrys-list">
+            <country-card
+                v-for="(country, index) of [1,2,3,4,5,6,7,8]" :key="index"
+            />
+        </div>
+    </div>
+    <div class="about__countrys container">
+        <p class="about__title">
             <span>
                 ВНЖ
             </span>за инвестиции в недвижимость
@@ -18,12 +40,18 @@
             ВНЖ выдается на несколько лет, по некоторым программам доступно продление ВНЖ
             без ограничения общего срока или подача заявки на гражданство.
         </p>
-        <div class="about__countrys-lits">
+        <div class="about__countrys-list">
             <country-card
                 v-for="(country, index) of [1,2,3,4,5,6,7,8]" :key="index"
+                class="bigger"
             />
         </div>
     </div>
+    <about-call/>
+    <about-employees/>
+    <about-expert/>
+    <about-updating/>
+    <why/>
 </template>
 
 
@@ -31,21 +59,23 @@
 .about {
 
 &__countrys {
+    padding-top: 80px;
 }
 
 &__title {
     font-weight: bold;
     font-size: 30px;
+    margin-bottom: 10px;
     & span {
         color: var(--var-blue);
     }
 }
 
-&__countrys-lits {
+&__countrys-list {
     display: flex;
     flex-wrap: wrap;
     padding-top: 20px;
-    gap: 30px;
+    gap: 20px;
 }
 }
 

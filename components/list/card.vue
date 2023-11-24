@@ -66,7 +66,9 @@
                     от 800 до 800 м2
                 </li>
                 <li>
-                    3 в наличии
+                    <span style="color: var(--var-blue);">
+                        3
+                    </span> в наличии
                 </li>
             </ul>
             <div class="card__text-btns">
@@ -103,8 +105,19 @@
     display: flex;
     gap: 40px;
     border-radius: 33px 25px 25px 33px;
+    @media (max-width: 1023px) {
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 5px;
+    }
     &:not(:last-child) {
         margin-bottom: 50px;
+        @media (max-width: 1023) {
+            margin-bottom: 30px;
+        }
+        @media (max-width: 767px) {
+            margin-bottom: 20px;
+        }
     }
     &__info {
         position: relative;
@@ -116,6 +129,13 @@
         flex-direction: column;
         justify-content: space-between;
         overflow: hidden;
+        @media (max-width: 1023px) {
+            flex: 0 0 100%;
+            height: 350px;
+        }
+        @media (max-width: 539px) {
+            height: 280px;
+        }
         &::before {
             content: "";
             width: 100%;
@@ -136,6 +156,7 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
+
     }
 
     &__info-header {
@@ -190,13 +211,23 @@
         border-radius: 20px;
         padding: 15px;
         color: #fff;
+        @media (max-width: 539px) {
+            display: none;
+        }
     }
 
     &__text {
         flex: calc(50% - 20px);
         padding: 40px 20px 50px 0px;
+        @media (max-width: 1023px) {
+            flex: 0 0 100%;
+            padding: 10px 0px 20px 0px;
+        }
         & p {
             margin-bottom: 20px;
+            @media (max-width: 539px) {
+                margin-bottom: 10px;
+            }
         }
     }
 
@@ -206,6 +237,11 @@
         line-height: 1.4;
         letter-spacing: 0em;
         margin-bottom: 20px;
+        @media (max-width: 539px) {
+            margin-bottom: 10px;
+            line-height: normal;
+            font-size: 25px;
+        }
     }
 
     &__text-subtitle {
@@ -215,11 +251,17 @@
         letter-spacing: 0em;
         opacity: 0.65;
         margin-bottom: 15px;
+        @media (max-width: 539px) {
+            margin-bottom: 10px;
+        }
     }
 
     &__text-btns {
         display: flex;
         gap: 20px;
+        @media (max-width: 539px) {
+            flex-wrap: wrap;
+        }
         & button {
             border: 2px solid var(--var-blue);
             padding: 15px;
@@ -256,6 +298,16 @@ ul {
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
+    @media (max-width: 1023px) {
+        justify-content: flex-start;
+        gap: 20px;
+    }
+    @media (max-width: 767px) {
+        flex-wrap: wrap;
+        gap: 0;
+        row-gap: 5px;
+        column-gap: 10px;
+    }
     & li {
         font-weight: bold;
     }

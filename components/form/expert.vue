@@ -38,6 +38,12 @@
 <style lang="scss" scoped>
 .form {
     padding-top: 50px;
+    @media (max-width: 1023px) {
+        padding-top: 30px;
+    }
+    @media (max-width: 539px) {
+        padding-top: 20px;
+    }
     &__body {
         display: flex;
         justify-content: space-between;
@@ -47,10 +53,24 @@
         border-style: solid;
         border-color: rgb(211, 211, 211);
         padding: 50px 30px 0 150px;
+        @media (max-width: 1023px) {
+            flex-wrap: wrap;
+            padding: 50px 30px 0px;
+        }
+        @media (max-width: 539px) {
+            padding: 20px 15px 0px;
+            overflow: hidden;
+        }
     }
 
     &__content {
         flex: 0 0 330px;
+        @media (max-width: 1090px) {
+            padding-bottom: 20px;
+        }
+        @media (max-width: 1023px) {
+            flex: 0 0 100%;
+        }
     }
 
     &__title {
@@ -59,6 +79,10 @@
         letter-spacing: 0em;
         margin-bottom: 30px;
         color: #fff;
+        @media (max-width: 539px) {
+            font-size: 25px;
+            margin-bottom: 15px;
+        }
     }
 
     &__list {
@@ -79,6 +103,9 @@
 
     &__list-item {
         flex: 1;
+        @media (max-width: 899px) {
+            flex: 0 0 100%;
+        }
     }
 
     &__desc {
@@ -92,6 +119,25 @@
 
     &__pic {
         position: relative;
+        @media (max-width: 1023px) {
+            display: flex;
+            flex-direction: row-reverse;
+        }
+
+        & img {
+            @media (max-width: 1090px) {
+                width: 100%;
+            }
+            @media (max-width: 1023px) {
+                max-width: 300px;
+            }
+            @media (max-width: 539px) {
+                margin-right: -100px;
+            }
+            @media (max-width: 399px) {
+                max-width: 250px;
+            }
+        }
         & span {
             position: absolute;
             bottom: -13px;
@@ -105,6 +151,18 @@
             border-style: solid;
             border-color: rgb(255, 255, 255);
             box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.5);
+            height: fit-content;
+            @media (max-width: 1023px) {
+                position: static;
+                transform: translate(0,0);
+                align-self: flex-end;
+                padding: 3px 0;
+                margin: 0 -50px 20px 0;
+            }
+            @media (max-width: 539px) {
+                flex: 0 0 150px;
+                width: max-content;
+            }
         }
     }
 }

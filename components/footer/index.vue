@@ -157,7 +157,9 @@
                         </span>
                     </div>
                     <div class="action">
-                        <layouts-lang/>
+                        <layouts-lang
+                            class="footer__lang"
+                        />
                         <div class="icons">
                             <icons-base
                                 width="30"
@@ -197,6 +199,12 @@
 .footer-w {
     margin-top: 70px;
     position: relative;
+    @media (max-width: 1023px) {
+        margin-top: 50px;
+    }
+    @media (max-width: 539px) {
+        margin-top: 30px;
+    }
     & .bg {
         position: absolute;
         width: 100%;
@@ -226,6 +234,9 @@
         display: flex;
         justify-content: space-between;
         padding: 0 50px;
+        @media (max-width: 1023px) {
+            display: none;
+        }
     }
 
     &__info-item {
@@ -249,10 +260,16 @@
     &__content {
         display: flex;
         gap: 20px;
+        @media (max-width: 1023px) {
+            flex-wrap: wrap;
+        }
     }
 
     &__content-list {
         flex: 0 0 calc(25% - 15px);
+        @media (max-width: 1023px) {
+            flex: 0 0 calc(50% - 10px);
+        }
         & li {
             font-size: 14px;
             line-height: 1.4;
@@ -290,6 +307,15 @@
         line-height: 1.6;
         letter-spacing: 0em;
         text-align: center;
+        @media (max-width: 1023px) {
+        }
+        @media (max-width: 539px) {
+        }
+    }
+}
+.footer__lang {
+    @media (max-width: 539px) {
+        display: none;
     }
 }
 .info-item {
@@ -300,6 +326,7 @@
         line-height: 1;
         letter-spacing: 0em;
         color: #fff;
+        white-space: nowrap;
     }
     & span {
         cursor: pointer;

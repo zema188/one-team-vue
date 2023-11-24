@@ -85,6 +85,18 @@
     gap: 20px;
     justify-content: space-between;
     align-items: center;
+    @media (max-width: 1099px) {
+        padding: 30px 100px;
+    }
+    @media (max-width: 1023px) {
+        padding: 30px 50px;
+    }
+    @media (max-width: 899px) {
+        flex-wrap: wrap;
+    }
+    @media (max-width: 539px) {
+        padding: 20px 15px;
+    }
 }
 
 &__text {
@@ -97,12 +109,23 @@
     z-index: 1;
     flex: 1;
     max-width: 479px;
+    @media (max-width: 899px) {
+        flex: 0 0 100%;
+        max-width: none;
+    }
+    @media (max-width: 539px) {
+        padding: 20px 15px;
+    }
 }
 &__text-title {
     font-size: 30px;
     line-height: 1.6;
     letter-spacing: 0em;
     font-weight: 700;
+    @media (max-width: 539px) {
+        line-height: normal;
+        font-size: 20px;
+    }
 }
 &__text-header {
     display: flex;
@@ -114,6 +137,10 @@
         line-height: 1.6;
         letter-spacing: 0em;
         font-weight: 700;
+        @media (max-width: 539px) {
+            line-height: normal;
+            font-size: 20px;
+        }
     }
 }
 }
@@ -142,6 +169,9 @@
     flex-wrap: wrap;
     gap: 20px;
     max-width: 300px;
+    @media (max-width: 899px) {
+        margin: 0 auto;
+    }
     & button {
         width: 100%;
         padding: 12px 14px;
@@ -157,6 +187,9 @@ ul {
     flex-wrap: wrap;
     column-gap: 40px;
     row-gap: 2px;
+    @media (max-width: 539px) {
+        column-gap: 10px;
+    }
     & li {
         flex: 0 0 calc(50% - 20px);
         font-size: 12px;

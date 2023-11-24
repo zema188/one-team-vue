@@ -68,6 +68,12 @@ let objects = ref([
 <style lang="scss" scoped>
 .catalog {
     padding-top: 40px;
+    @media (max-width: 1023px) {
+        padding-top: 30px;
+    }
+    @media (max-width: 539px) {
+        padding-top: 20px;
+    }
 
 &__action {
     display: flex;
@@ -105,10 +111,15 @@ let objects = ref([
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    justify-content: space-around;
+    justify-content: space-between;
+    align-items: center;
 }
 .sort {
     position: relative;
+    padding-top: 10px;
+    @media (max-width: 539px) {
+        margin: 0 0 0 auto;
+    }
     &__header {
         background-color: rgb(255, 255, 255);
         border-radius: 5px;
@@ -156,6 +167,12 @@ let objects = ref([
 
 .list {
     padding-top: 50px;
+    @media (max-width: 1023px) {
+        padding-top: 30px;
+    }
+    @media (max-width: 539px) {
+        padding-top: 20px;
+    }
 }
 
 

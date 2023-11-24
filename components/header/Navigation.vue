@@ -17,6 +17,9 @@
 .nav {
     display: flex;
     gap: 15px;
+    @media(max-width: 1199px) {
+        display: none;
+    }
     & a {
         transition: .2s;
         &.router-link-active {

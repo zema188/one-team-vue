@@ -1,7 +1,8 @@
 <script setup>
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
-
+let slidePerView = ref(4)
+let spaceBetween = ref(30)
 const onSwiper = (swiper) => {
   console.log(swiper);
 };
@@ -16,12 +17,30 @@ defineProps({
     required: true
   },
 });
+onMounted(() => {
+  window.addEventListener('resize', function(e) {
+    const widthWindow = window.innerWidth
+    if(widthWindow > 1023) {
+      slidePerView.value = 4
+    }
+    if(widthWindow <= 1023) {
+      slidePerView.value = 3
+    }
+    if(widthWindow <= 767) {
+      slidePerView.value = 2
+      spaceBetween.value = 15
+    }
+    if(widthWindow <= 539) {
+      slidePerView.value = 1
+    }
+  });
+})
 </script>
 
 <template>
   <swiper
-    :slides-per-view="4"
-    :space-between="30"
+    :slides-per-view="slidePerView"
+    :space-between="spaceBetween"
     @swiper="onSwiper"
     @slideChange="onSlideChange"
   >
@@ -116,6 +135,13 @@ defineProps({
     align-items: center;
     min-height: 300px;
     padding: 50px 20px 30px;
+    @media (max-width: 767px) {
+      padding: 20px 20px;
+    }
+    @media (max-width: 539px) {
+      min-height: 250px;
+      padding: 20px 20px;
+    }
   }
   &_btn {
     display: flex;
@@ -125,6 +151,7 @@ defineProps({
     height: auto;
     & span {
       color: var(--var-blue);
+      text-align: center;
     }
   }
 
@@ -135,10 +162,16 @@ defineProps({
   font-size: 28px;
   color: rgb(186, 156, 128);
   margin-bottom: 20px;
+  @media (max-width: 767px) {
+    font-size: 20px;
+  }
   & span {
     display: block;
     margin-top: 10px;
     color: #000;
+    @media (max-width: 767px) {
+      margin-top: 0px;
+    }
   }
 }
 .desc {

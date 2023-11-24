@@ -1,11 +1,20 @@
 <script setup>
-
+let mobileMenuIsActive = ref(false)
 </script>
 
 <template>
     <div class="header-w">
         <header class="header container">
             <div class="header__top">
+                <div class="header__menu"
+                    @click="mobileMenuIsActive = !mobileMenuIsActive"
+                >
+                    <div class="nav-icon toggle-menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
                 <header-navigation/>
                 <div class="header__top-action">
                     <div class="header__search input-w">
@@ -77,6 +86,42 @@
             </div>
         </header>
     </div>
+    <div class="header-m"
+    :class="{active: mobileMenuIsActive}"
+    >
+        <div class="header-m__content">
+            <nav class="header-m__nav">
+                <nuxt-link to="/" class="header-m__nav-item">
+                    Главная
+                </nuxt-link>
+                <nuxt-link to="/questions" class="header-m__nav-item">
+                    Вопросы и ответы
+                </nuxt-link>
+                <nuxt-link to="/company" class="header-m__nav-item">
+                    Компания
+                </nuxt-link>
+                <nuxt-link to="/services" class="header-m__nav-item">
+                    Услуги
+                </nuxt-link>
+                <nuxt-link to="/about" class="header-m__nav-item">
+                    Где работаем
+                </nuxt-link>
+                <nuxt-link to="/career" class="header-m__nav-item">
+                    Карьера
+                </nuxt-link>
+            </nav>
+            <div class="header-m__close toggle-menu"
+                @click="mobileMenuIsActive = !mobileMenuIsActive"
+            >
+                <icons-base
+                    width="25"
+                    height="25"
+                    icon-name="close"
+                    iconColor="#fff"
+                ><icons-close /></icons-base>
+            </div>
+        </div>
+    </div>
 </template>
 
 <style lang="scss" scoped>
@@ -100,6 +145,9 @@
     }
 
     &__search {
+        @media (max-width: 539px) {
+            display: none;
+        }
     }
 
     &__lang {
@@ -128,6 +176,9 @@
         gap: 5px;
         justify-content: space-between;
         font-size: 15px;
+        @media(max-width: 1199px) {
+            display: none;
+        }
     }
 
     &__bottom-get-catalog {
@@ -177,9 +228,107 @@
         }
     }
 }
+.nav-icon {
+      width: 19px;
+      height: 15px;
+      position: relative;
+      transform: rotate(0deg);
+      transition: .5s ease-in-out;
+      cursor: pointer;
+}
+.nav-icon span {
+      display: block;
+      position: absolute;
+      height: 1.62px;
+      width: 100%;
+      background: #000;
+      border-radius: 10px;
+      opacity: 1;
+      left: 0;
+      transform: rotate(0deg);
+      transition: .25s ease-in-out;
+}
 
+.nav-icon span:nth-child(1) {
+      top: 0px;
+}
+.nav-icon span:nth-child(2) {
+      top: 6px;
+      width: 13px;
+      margin-left: 6px;
+}
+.nav-icon span:nth-child(3) {
+  top: 12px;
+}
+.nav-icon.open span {
+  left: 7px;
+}
+.nav-icon.open span:nth-child(1) {
+  top: 5px;
+  transform: rotate(135deg);
+  max-width: 30px;
+  left: 0px;
+}
+.nav-icon.open span:nth-child(2) {
+  opacity: 0;
+  left: -60px;
+}
+.nav-icon.open span:nth-child(3) {
+  top: 5px;
+  transform: rotate(-135deg);
+  max-width: 30px;
+  left: 0px;
+}
 
+.header__menu {
+  display: none;
 
+  @media (max-width: 1199px) {
+    display: block;
+  }
+}
 
+.header-m {
+      background: #e5e3e3;
+      max-width: 290px;
+      width: 63%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 10;
+      left: -100%;
+      transition: .4s;
+      padding: 37px 15px 0px;
+      height: 100vh;
+      overflow: auto;
+      &.active {
+            left: 0;
+      }
+      &__content {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            padding-bottom: 100px;
+      }
+      &__nav {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 50px;
+            gap: 7px;
+      }
+      &__nav-item {
+            color: #000;
+      }
+}
+
+.header-m__close {
+      position: absolute;
+      right: 10px;
+      top: 19px;
+      & img {
+            width: 13px;
+            height: 13px;
+      }
+}
 
 </style>

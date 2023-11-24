@@ -31,7 +31,8 @@
     @swiper="onSwiper"
     @slideChange="onSlideChange"
   >
-    <swiper-slide class="slide">
+    <swiper-slide class="slide"
+    >
       <div class="slide__block">
         <img class="pic" src="@/assets/images/1_6.webp">
         <div class="info">
@@ -108,6 +109,12 @@
   border-radius: 15px;
   padding: 50px 30px 90px;
   flex: 0 0 calc(50% - 10px);
+  @media (max-width: 899px) {
+    flex: 0 0 100%;
+  }
+  @media (max-width: 539px) {
+    padding: 20px 10px 40px;
+  }
   &::after {
     content: "";
     position: absolute;
@@ -126,6 +133,9 @@
 .slide {
   display: flex;
   gap: 20px;
+  @media (max-width: 899px) {
+    flex-wrap: wrap;
+  }
 }
 .pic {
   position: absolute;
@@ -143,6 +153,9 @@
   color: rgb(242, 242, 242);
   opacity: 1;
   margin-bottom: 30px;
+  @media (max-width: 539px) {
+    margin-bottom: 10px;
+  }
   & span {
     font-size: 15px;
     line-height: 1.6;

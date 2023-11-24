@@ -54,6 +54,9 @@
 <style lang="scss" scoped>
 .algorithm {
     padding-top: 50px;
+    @media (max-width: 1023px) {
+        padding-top: 30px;
+    }
     &__title {
 
     }
@@ -61,6 +64,9 @@
     &__list {
         display: flex;
         gap: 15px;
+        @media (max-width: 1023px) {
+            flex-wrap: wrap;
+        }
     }
 
     &__item {
@@ -70,6 +76,9 @@
         border-radius: 15px;
         box-shadow: 0px 0px 14px -5px rgba(28, 111, 255, 0.72);
         flex: 0 0 calc(33.33% - 10px);
+        @media (max-width: 1023px) {
+            flex: 0 0 100%;
+        }
     }
 
     &__item-step {

@@ -93,6 +93,12 @@
 <style lang="scss" scoped>
 .why {
     padding-top: 50px;
+    @media (max-width: 1023px) {
+        padding-top: 30px;
+    }
+    @media (max-width: 539px) {
+        padding-top: 20px;
+    }
     &__title {
     }
 
@@ -100,6 +106,12 @@
         display: flex;
         gap: 20px;
         padding-bottom: 30px;
+        @media (max-width: 1023px) {
+            flex-wrap: wrap;
+        }
+        @media (max-width: 539px) {
+            padding-bottom: 10px;
+        }
     }
 
     &__top-item {
@@ -110,11 +122,18 @@
         padding-right: 30px;
         background: rgb(247,247,247);
         border-radius: 20px;
+        @media (max-width: 1023px) {
+            flex: 0 0 100%;
+        }
         & .icon, img {
             margin: 0 auto;
             display: block;
             margin-top: -30px;
             pointer-events: none;
+            @media (max-width: 1023px) {
+                width: 100%;
+                max-width: 300px;
+            }
         }
     }
 
@@ -143,6 +162,12 @@
         padding-top: 30px;
         display: flex;
         gap: 20px;
+        @media (max-width: 1023px) {
+            flex-wrap: wrap;
+        }
+        @media (max-width: 539px) {
+            padding-top: 10px;
+        }
     }
 
     &__bottom-item {
@@ -157,6 +182,13 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        @media (max-width: 1099px) {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+        @media (max-width: 1023px) {
+            flex: 0 0 100%;
+        }
         &._blue {
             background-image: linear-gradient(to bottom, rgba(48, 100, 255, 0.8) 0%, rgba(48, 100, 255, 0.97) 100%);
             color: #fff;
@@ -173,6 +205,13 @@
         letter-spacing: 0em;
         white-space: nowrap;
         font-weight: bold;
+        @media (max-width: 1023px) {
+            min-width: 150px;
+        }
+        @media (max-width: 539px) {
+            font-size: 20px;
+            min-width: 60px;
+        }
     }
 
     &__bottom-item-desc {

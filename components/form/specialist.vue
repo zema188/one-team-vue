@@ -61,6 +61,13 @@
         display: flex;
         justify-content: space-between;
         gap: 20px;
+        @media (max-width: 1023px) {
+            flex-wrap: wrap;
+            padding: 30px 0px 0px 30px;
+        }
+        @media (max-width: 767px) {
+            padding: 20px 0px 0px 20px;
+        }
         &::before {
             content: "";
             width: 100%;
@@ -87,12 +94,28 @@
     &__text {
         z-index: 2;
         padding-bottom: 60px;
+        @media (max-width: 1023px) {
+            flex: 0 0 100%;
+            padding-right: 30px;
+            padding-bottom: 20px;
+        }
+        @media (max-width: 767px) {
+            padding-right: 20px;
+            padding-bottom: 10px;
+        }
     }
 
     &__pic {
         z-index: 2;
-        flex: 1;
+        flex: 0 0 475px;
         align-self: end;
+        @media (max-width: 1023px) {
+            margin: 0 0 0 auto;
+            flex: 0 0 300px;
+        }
+        @media (max-width: 767px) {
+            flex: 0 0 250px;
+        }
         & img {
             width: 100%;
         }
@@ -111,6 +134,12 @@
     margin-bottom: 30px;
     &__item {
         flex: 0 0 241px;
+        @media (max-width: 1023px) {
+            flex: 1;
+        }
+        @media (max-width: 767px) {
+            flex: 0 0 100%;
+        }
     }
     & input {
         background: #000;

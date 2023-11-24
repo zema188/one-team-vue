@@ -42,10 +42,13 @@ const emit = defineEmits('changeFilter')
         flex-wrap: wrap;
         justify-content: space-between;
         margin-bottom: 20px;
+
     }
 
     &__title {
-
+        @media (max-width: 899px) {
+            flex: 0 0 100%;
+        }
     }
 
     & .input-w {

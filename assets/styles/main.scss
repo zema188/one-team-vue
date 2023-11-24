@@ -23,12 +23,18 @@
   &_black {
     color: #000;
     margin-bottom: 40px;
+    @media (max-width: 1023px) {
+      margin-bottom: 20px;
+    }
   }
 }
 
 
 main {
   padding-top: 30px;
+  @media (max-width: 767px) {
+    padding-top: 15px;
+  }
   // flex: 1 1 auto;
 }
 

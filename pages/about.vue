@@ -60,12 +60,24 @@
 
 &__countrys {
     padding-top: 80px;
+    @media (max-width: 1023px) {
+        padding-top: 30px;
+    }
+    @media (max-width: 539px) {
+        padding-top: 20px;
+    }
 }
 
 &__title {
     font-weight: bold;
     font-size: 30px;
     margin-bottom: 10px;
+    @media (max-width: 1023px) {
+        font-size: 25px;
+    }
+    @media (max-width: 539px) {
+        font-size: 20px;
+    }
     & span {
         color: var(--var-blue);
     }
@@ -76,6 +88,9 @@
     flex-wrap: wrap;
     padding-top: 20px;
     gap: 20px;
+    @media (max-width: 767px) {
+        gap: 10px;
+    }
 }
 }
 

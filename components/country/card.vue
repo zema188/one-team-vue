@@ -75,8 +75,17 @@
     min-height: 390px;
     display: flex;
     flex-direction: column;
+    @media (max-width: 1023px) {
+        flex: 0 0 calc(50% - 10px);
+    }
+    @media (max-width: 767px) {
+        flex: 0 0 100%;
+    }
     &.bigger {
         flex: 0 0 calc(50% - 10px);
+        @media (max-width: 1023px) {
+            flex: 0 0 100%;
+        }
     }
     &::before {
         content: "";
@@ -96,10 +105,17 @@
         align-items: center;
         gap: 15px;
         margin-bottom: 15px;
+        @media (max-width: 767px) {
+            gap: 10px;
+            margin-bottom: 10px;
+        }
         & p {
             text-transform: uppercase;
             text-decoration: underline;
             font-size: 30px;
+            @media (max-width: 767px) {
+                font-size: 25px;
+            }
         }
     }
 

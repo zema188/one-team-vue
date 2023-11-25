@@ -3,43 +3,45 @@
 </script>
 
 <template>
-    <div class="services container">
-        <img class="services__bg" src="@/assets/images/uslugi.webp">
-        <p class="services__title">
-            Основные услуги
-        </p>
-        <div class="services__content">
-            <div class="services__content-item">
-                <span>
-                    1
-                </span>
-                <p>
-                    Жилая недвижимость
-                </p>
-            </div>
-            <div class="services__content-item">
-                <span>
-                    2
-                </span>
-                <p>
-                    Коммерческая недвижимость
-                </p>
-            </div>
-            <div class="services__content-item">
-                <span>
-                    3
-                </span>
-                <p>
-                    Зарубежная недвижимость
-                </p>
-            </div>
-            <div class="services__content-item">
-                <span>
-                    4
-                </span>
-                <p>
-                    Инвестиции
-                </p>
+    <div class="container">
+        <div class="services">
+            <img class="services__bg" src="@/assets/images/uslugi.webp">
+            <p class="services__title">
+                Основные услуги
+            </p>
+            <div class="services__content">
+                <div class="services__content-item">
+                    <span>
+                        1
+                    </span>
+                    <p>
+                        Жилая недвижимость
+                    </p>
+                </div>
+                <div class="services__content-item">
+                    <span>
+                        2
+                    </span>
+                    <p>
+                        Коммерческая недвижимость
+                    </p>
+                </div>
+                <div class="services__content-item">
+                    <span>
+                        3
+                    </span>
+                    <p>
+                        Зарубежная недвижимость
+                    </p>
+                </div>
+                <div class="services__content-item">
+                    <span>
+                        4
+                    </span>
+                    <p>
+                        Инвестиции
+                    </p>
+                </div>
             </div>
         </div>
     </div>
@@ -51,6 +53,15 @@
     border-radius: 10px;
     color: #FFF;
     padding: 150px 100px;
+    @media (max-width: 899px) {
+        padding: 100px 60px;
+    }
+    @media (max-width: 767px) {
+        padding: 60px 60px;
+    }
+    @media (max-width: 539px) {
+        padding: 20px;
+    }
     &::before {
         content: "";
         position: absolute;
@@ -80,6 +91,9 @@
         opacity: 1;
         z-index: 1;
         position: relative;
+        @media (max-width: 539px) {
+            margin-bottom: 10px;
+        }
     }
 
     &__content {
@@ -89,6 +103,9 @@
         gap: 10px;
         z-index: 1;
         position: relative;
+        @media (max-width: 767px) {
+            flex-wrap: wrap;
+        }
     }
 
     &__content-item {
@@ -96,6 +113,9 @@
         display: flex;
         align-items: center;
         gap: 20px;
+        @media (max-width: 767px) {
+            flex: 0 0 100%;
+        }
         & span {
             min-width: 40px;
             min-height: 40px;

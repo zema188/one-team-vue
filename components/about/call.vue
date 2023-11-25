@@ -27,10 +27,25 @@
 <style lang="scss" scoped>
 .call {
     padding-top: 50px;
+    @media (max-width: 1023px) {
+        padding-top: 30px;
+    }
+    @media (max-width: 539px) {
+        padding-top: 20px;
+    }
     &__content {
         padding: 120px 100px 150px;
         position: relative;
         border-radius: 10px;
+        @media (max-width: 1023px) {
+            padding: 80px 50px 90px;
+        }
+        @media (max-width: 767px) {
+            padding: 50px 30px 60px;
+        }
+        @media (max-width: 539px) {
+            padding: 20px;
+        }
         &::before {
             content: "";
             border-radius: 10px;
@@ -40,8 +55,11 @@
             width: 100%;
             height: 100%;
             z-index: 1;
-            background: rgba(0, 0, 0, 0.2);
+            background: rgba(0, 0, 0, 0.4);
             z-index: 0;
+            @media (max-width: 767px) {
+                background: rgba(0, 0, 0, 0.4);
+            }
         }
     }
     &__bg {
@@ -62,6 +80,18 @@
         z-index: 2;
         position: relative;
         font-size: 25px;
+        @media (max-width: 1023px) {
+            margin-bottom: 35px;
+            font-size: 20px;
+        }
+        @media (max-width: 767px) {
+            margin-bottom: 30px;
+            font-size: 18px;
+        }
+        @media (max-width: 539px) {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
     }
 
     &__steps {

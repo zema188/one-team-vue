@@ -25,9 +25,7 @@
                             Арт-директор
                         </span>
                     </div>
-                </div>
-                <div class="col">
-                    <div class="updating__item">
+                    <div class="updating__item mobile">
                         <div class="updating__item-pic">
                             <img src="@/assets/images/asdd.jpg">
                         </div>
@@ -38,31 +36,7 @@
                             Арт-директор
                         </span>
                     </div>
-                    <div class="updating__item">
-                        <div class="updating__item-pic">
-                            <img src="@/assets/images/asdd.jpg">
-                        </div>
-                        <p>
-                            Андрей Лебедев
-                        </p>
-                        <span>
-                            Арт-директор
-                        </span>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="updating__item">
-                        <div class="updating__item-pic">
-                            <img src="@/assets/images/asdd.jpg">
-                        </div>
-                        <p>
-                            Андрей Лебедев
-                        </p>
-                        <span>
-                            Арт-директор
-                        </span>
-                    </div>
-                    <div class="updating__item">
+                    <div class="updating__item mobile">
                         <div class="updating__item-pic">
                             <img src="@/assets/images/asdd.jpg">
                         </div>
@@ -76,6 +50,65 @@
                 </div>
                 <div class="col">
                     <div class="updating__item">
+                        <div class="updating__item-pic">
+                            <img src="@/assets/images/asdd.jpg">
+                        </div>
+                        <p>
+                            Андрей Лебедев
+                        </p>
+                        <span>
+                            Арт-директор
+                        </span>
+                    </div>
+                    <div class="updating__item">
+                        <div class="updating__item-pic">
+                            <img src="@/assets/images/asdd.jpg">
+                        </div>
+                        <p>
+                            Андрей Лебедев
+                        </p>
+                        <span>
+                            Арт-директор
+                        </span>
+                    </div>
+                    <div class="updating__item mobile">
+                        <div class="updating__item-pic">
+                            <img src="@/assets/images/asdd.jpg">
+                        </div>
+                        <p>
+                            Андрей Лебедев
+                        </p>
+                        <span>
+                            Арт-директор
+                        </span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="updating__item pc">
+                        <div class="updating__item-pic">
+                            <img src="@/assets/images/asdd.jpg">
+                        </div>
+                        <p>
+                            Андрей Лебедев
+                        </p>
+                        <span>
+                            Арт-директор
+                        </span>
+                    </div>
+                    <div class="updating__item pc">
+                        <div class="updating__item-pic">
+                            <img src="@/assets/images/asdd.jpg">
+                        </div>
+                        <p>
+                            Андрей Лебедев
+                        </p>
+                        <span>
+                            Арт-директор
+                        </span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="updating__item pc">
                         <div class="updating__item-pic">
                             <img src="@/assets/images/asdd.jpg">
                         </div>
@@ -121,6 +154,19 @@
         color: rgb(0, 0, 0);
         margin-bottom: 50px;
         font-weight: bold;
+        @media (max-width: 1023px) {
+            font-size: 28px;
+            margin-bottom: 30px;
+            line-height: normal;
+        }
+        @media (max-width: 767px) {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        @media (max-width: 539px) {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
     }
 
     &__subtitle {
@@ -131,18 +177,48 @@
         margin-bottom: 50px;
         font-weight: 500;
         text-align: center;
+        @media (max-width: 1023px) {
+            font-size: 18px;
+            margin-bottom: 30px;
+            line-height: normal;
+        }
+        @media (max-width: 767px) {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        @media (max-width: 539px) {
+
+        }
     }
 
     &__list {
         display: flex;
         gap: 40px;
         justify-content: center;
+        @media (max-width: 1023px) {
+            flex-wrap: wrap;
+        }
+        @media (max-width: 539px) {
+            gap: 0px;
+        }   
     }
 
     &__item {
         width: 200px;
         padding: 20px 10px;
         background: #fff;
+
+        &.mobile {
+            display: none;
+            @media (max-width: 1023px) {
+                display: block;
+            }
+        }
+        &.pc {
+            @media (max-width: 1023px) {
+                display: none;
+            }
+        }
         & p {
             text-align: center;
             font-weight: 500;
@@ -166,15 +242,29 @@
     display: flex;
     flex-direction: column;
     gap: 130px;
+    @media (max-width: 1023px) {
+        gap: 0;
+        flex: 0 0 calc(50% - 20px);
+        align-items: center;
+    }
+    @media (max-width: 539px) {
+        flex: 0 0 100%;
+    }   
     &:first-child {
-        justify-content: center;
+        @media (min-width: 1024px) {
+            justify-content: center;
+        }
     }
     &:nth-child(3) {
-        padding-top: 50px;
+        @media (min-width: 1024px) {
+            padding-top: 50px;
+        }
     }
     &:nth-child(4) {
-        padding-bottom: 80px;
-        justify-content: center;
+        @media (min-width: 1024px) {
+            padding-bottom: 80px;
+            justify-content: center;
+        }
     }
 }
 </style>

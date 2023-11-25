@@ -66,6 +66,12 @@
 <style lang="scss" scoped>
 .employees {
     padding-top: 50px;
+    @media (max-width: 1023px) {
+        padding-top: 30px;
+    }
+    @media (max-width: 539px) {
+        padding-top: 20px;
+    }
     &__title {
         text-transform: uppercase;
         margin-bottom: 15px;
@@ -74,6 +80,18 @@
         font-weight: bold;
         letter-spacing: -3px;
         text-align: center;
+        @media (max-width: 1023px) {
+            margin-bottom: 15px;
+            font-size: 40px;
+        }
+        @media (max-width: 767px) {
+            margin-bottom: 10px;
+            font-size: 35px;
+        }
+        @media (max-width: 539px) {
+            margin-bottom: 0px;
+            font-size: 22px;
+        }
     }
 
     &__subtitle {
@@ -83,6 +101,15 @@
         letter-spacing: 0em;
         color: rgb(49, 101, 255);
         text-align: center;
+        @media (max-width: 1023px) {
+            margin-bottom: 15px;
+        }
+        @media (max-width: 767px) {
+            margin-bottom: 10px;
+        }
+        @media (max-width: 539px) {
+
+        }
     }
 
     &__preview-pic {
@@ -103,6 +130,12 @@
 
     &__item {
         flex: 0 0 calc(25% - 15px);
+        @media (max-width: 1023px) {
+            flex: 0 0 calc(50% - 10px);
+        }
+        @media (max-width: 539px) {
+            flex: 0 0 100%;
+        }
     }
 
     &__item-pic {

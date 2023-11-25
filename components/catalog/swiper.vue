@@ -17,9 +17,8 @@ const props = defineProps({
     },
 })
 
-onMounted(() => {
-  window.addEventListener('resize', function(e) {
-    const widthWindow = window.innerWidth
+const resizeSwiper = () => {
+  const widthWindow = window.innerWidth
     if(widthWindow > 1023) {
       slidePerView.value = 3.2
     }
@@ -33,6 +32,12 @@ onMounted(() => {
     if(widthWindow <= 539) {
       slidePerView.value = 1.2
     }
+}
+
+onMounted(() => {
+  resizeSwiper()
+  window.addEventListener('resize', function(e) {
+    resizeSwiper()
   });
 })
 

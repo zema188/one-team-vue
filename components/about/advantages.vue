@@ -389,15 +389,27 @@
 <style lang="scss" scoped>
 .advantages {
     padding-top: 50px;
+    @media (max-width: 1023px) {
+        padding-top: 30px;
+    }
+    @media (max-width: 539px) {
+        padding-top: 20px;
+    }
     &__list {
         display: flex;
         flex-wrap: wrap;
         column-gap: 30px;
         row-gap: 50px;
+        @media (max-width: 1023px) {
+            row-gap: 30px;
+        }
     }
 
     &__item {
         flex: 0 0 calc(50% - 15px);
+        @media (max-width: 1023px) {
+            flex: 0 0 100%;
+        }
     }
 
     &__item-header {
@@ -407,6 +419,9 @@
         border-bottom: 1px solid rgb(118, 85, 16);
         padding-bottom: 20px;
         margin-bottom: 20px;
+        @media (max-width: 539px) {
+            gap: 10px;
+        }
     }
 
     &__item-icon {
@@ -419,6 +434,13 @@
         letter-spacing: 0em;
         text-decoration: underline;
         text-transform: uppercase;
+        @media (max-width: 767px) {
+            font-size: 18px;
+            line-height: normal;
+        }
+        @media (max-width: 539px) {
+            font-size: 16px;
+        }
     }
 
     &__item-list {

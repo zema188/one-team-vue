@@ -17,22 +17,27 @@ defineProps({
     required: true
   },
 });
-onMounted(() => {
-  window.addEventListener('resize', function(e) {
-    const widthWindow = window.innerWidth
+const resizeSwiper = () => {
+  const widthWindow = window.innerWidth
     if(widthWindow > 1023) {
-      slidePerView.value = 4
+      slidePerView.value = 3.2
     }
     if(widthWindow <= 1023) {
-      slidePerView.value = 3
+      slidePerView.value = 2.4
     }
     if(widthWindow <= 767) {
-      slidePerView.value = 2
+      slidePerView.value = 1.5
       spaceBetween.value = 15
     }
     if(widthWindow <= 539) {
-      slidePerView.value = 1
+      slidePerView.value = 1.2
     }
+}
+
+onMounted(() => {
+  resizeSwiper()
+  window.addEventListener('resize', function(e) {
+    resizeSwiper()
   });
 })
 </script>

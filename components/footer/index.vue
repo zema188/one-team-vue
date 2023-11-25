@@ -291,6 +291,9 @@
                 border-color: rgb(155, 155, 155);
                 color: #fff;
                 padding: 2px 13px;
+                @media (max-width: 539px) {
+                    padding: 2px 5px;
+                }
             }
         }
     }

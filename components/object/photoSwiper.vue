@@ -1,31 +1,56 @@
 <script>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
+
 export default {
-    components: {
-        Swiper,
-        SwiperSlide,
-    },
-    setup() {
+  components: {
+    Swiper,
+    SwiperSlide,
+  },
+  setup() {
     const thumbsSwiper = ref(null);
 
     const setThumbsSwiper = (swiper) => {
-        thumbsSwiper.value = swiper;
+      thumbsSwiper.value = swiper;
     };
 
-    return {
-        thumbsSwiper,
-        setThumbsSwiper,
-        modules: [FreeMode, Navigation, Thumbs],
+    const slidePerView = ref(10);
+    const spaceBetween = ref(10);
+
+    const resizeSwiper = () => {
+      const widthWindow = window.innerWidth;
+      if (widthWindow > 1023) {
+        slidePerView.value = 10;
+      } else if (widthWindow <= 1023 && widthWindow > 767) {
+        slidePerView.value = 8;
+      } else if (widthWindow <= 767 && widthWindow > 539) {
+        slidePerView.value = 7;
+      } else {
+        slidePerView.value = 4;
+      }
     };
-    },
+
+    onMounted(() => {
+      resizeSwiper();
+      window.addEventListener('resize', resizeSwiper);
+    });
+
+    return {
+      thumbsSwiper,
+      setThumbsSwiper,
+      modules: [FreeMode, Navigation, Thumbs],
+      slidePerView,
+      spaceBetween,
+    };
+  },
 };
 </script>
+
   
 <template>
     <swiper
@@ -72,8 +97,8 @@ export default {
     </swiper>
     <swiper
       @swiper="setThumbsSwiper"
-      :spaceBetween="10"
-      :slidesPerView="10"
+      :spaceBetween="spaceBetween"
+      :slidesPerView="slidePerView"
       :freeMode="true"
       :watchSlidesProgress="true"
       :modules="modules"
@@ -128,6 +153,15 @@ export default {
     & .swiper-slide {
         height: 400px;
         border-radius: 20px;
+        @media (max-width: 1023px) {
+            height: 300px;
+        }
+        @media (max-width: 767px) {
+            height: 300px;
+        }
+        @media (max-width: 539px) {
+            height: 250px;
+        }
         & img {
             border-radius: 20px;
             width: 100%;

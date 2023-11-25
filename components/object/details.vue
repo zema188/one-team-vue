@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <div class="details container">
+    <div class="details ">
         <div class="details__content">
             <div class="details__content-text-blocks">
                 <div class="details__text">
@@ -82,6 +82,9 @@
         display: flex;
         flex-direction: column;
         gap: 20px;
+        @media (max-width: 899px) {
+            flex: 0 0 100%;
+        }
     }
 
     &__text {
@@ -103,6 +106,15 @@
         font-size: 32px;
         line-height: 1;
         letter-spacing: 0.03em;
+        @media (max-width: 899px) {
+            font-size: 28px;
+        }
+        @media (max-width: 767px) {
+            font-size: 25px;
+        }
+        @media (max-width: 539px) {
+            font-size: 23px;
+        }
     }
 
     &__text-footer {
@@ -145,6 +157,9 @@
         display: flex;
         flex-direction: column;
         gap: 20px;
+        @media (max-width: 899px) {
+            display: none;
+        }
     }
 
     &__pic {

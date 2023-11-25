@@ -54,8 +54,19 @@
     height: 80px;
     background: #fff;
     border-radius: 100%;
+    @media (max-width: 1023px) {
+        width: 60px;
+        height: 60px;
+    }
+    @media (max-width: 767px) {
+        width: 50px;
+        height: 50px;
+    }
     & svg {
-        
+        @media (max-width: 767px) {
+            width: 20px;
+            height: 20px;
+        }
     }
 }
 

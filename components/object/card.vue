@@ -18,6 +18,8 @@ const contentNav = ref([
         name:  'prices'
     },
 ])
+
+
 let activeFooterBlock = ref('details')
 const footerNav = ref([
     {
@@ -42,90 +44,6 @@ const footerNav = ref([
     },
 ])
 
-const catalogLocations = ref({
-    objects: [
-        {
-            name: 'Аланья',
-            date: '19.11.2023',
-        },
-        {
-            name: 'Анталья',
-            date: '19.11.2023',
-        },
-        {
-            name: 'Аланья',
-            date: '19.11.2023',
-        },
-        {
-            name: 'Анталья',
-            date: '19.11.2023',
-        },
-    ],
-    filterList: [
-        {
-            text: 'Южное побережье',
-            quantity: null,
-            active: true
-        },
-        {
-            text: 'Западное побережье',
-            quantity: null,
-        },
-        {
-            text: 'Северное побережье',
-            quantity: null,
-        }
-    ],
-})
-
-const instructions = ref({
-    filterList: [
-        {
-            text: 'Аланья',
-            quantity: 14,
-            active: true
-        },
-        {
-            text: 'Анталья',
-            quantity: 15,
-        }
-    ]
-})
-
-
-const catalogPrice = ref({
-    objects: [
-        {
-            price: '50 000 - 100 000$',
-        },
-        {
-            price: '100 000 - 250 000$',
-        },
-        {
-            price: 'от 250 000$',
-        },
-    ],
-    filterList: [
-        {
-            text: 'до 350 000 $ ',
-            quantity: null,
-            active: true
-        },
-        {
-            text: 'Премиум',
-            quantity: null,
-        },
-    ],
-})
-
-const changeCatalog = (btn, catalog) => {
-    catalog.filterList.forEach(el => {
-        if(el.active) {
-            el.active = false
-        }
-    });
-    btn.active = true
-}
 </script>
 
 <template>
@@ -492,34 +410,20 @@ const changeCatalog = (btn, catalog) => {
                 v-if="activeFooterBlock === 'description'"
             />
         </div>
-        <catalog-location
-            :title="'Свежие каталоги по локациям'"
-            :subtitle="'Обновлено 19.11.2023'"
-            :data="catalogLocations"
-            @changeFilter="(btn) => changeCatalog(btn, catalogLocations)"
-        />
-        <instruction
-            :title="'Инструкции и чек-листы'"
-            :subtitle="'По локации'"
-            :data="instructions"
-            :filterStyle="{color: '_brown-border'}"
-            @changeFilter="(btn) => changeCatalog(btn, instructions)"
-        />
-        <catalog-val
-            :title="'Общие каталоги по стоимости'"
-            :subtitle="'Обновлено 19.11.2023'"
-            :data="catalogPrice"
-            @changeFilter="(btn) => changeCatalog(btn, catalogPrice)"
-        />
-        <form-expert/>
-        <why/>
-        <object-list-objects/>
     </div>
 </template>
 
 <style lang="scss" scoped>
 .object {
-
+    @media (max-width: 1023px) {
+        
+    }
+    @media (max-width: 767px) {
+        
+    }
+    @media (max-width: 539px) {
+        
+    }
     &__nav {
         display: flex;
         flex-wrap: wrap;
@@ -527,6 +431,15 @@ const changeCatalog = (btn, catalog) => {
         row-gap: 5px;
         align-items: center;
         margin-bottom: 20px;
+        @media (max-width: 1023px) {
+            
+        }
+        @media (max-width: 767px) {
+            
+        }
+        @media (max-width: 539px) {
+            
+        }
     }
 
     &__nav-item {
@@ -567,10 +480,28 @@ const changeCatalog = (btn, catalog) => {
     &__body {
         display: flex;
         gap: 25px;
+        @media (max-width: 1023px) {
+            flex-wrap: wrap;
+        }
+        @media (max-width: 767px) {
+            
+        }
+        @media (max-width: 539px) {
+            
+        }
     }
 
     &__content {
         width: 61%;
+        @media (max-width: 1023px) {
+            width: 100%;
+        }
+        @media (max-width: 767px) {
+            
+        }
+        @media (max-width: 539px) {
+            
+        }
     }
 
     &__content-nav {
@@ -604,6 +535,13 @@ const changeCatalog = (btn, catalog) => {
     height: fit-content;
     position: sticky;
     top: 20px;
+    @media (max-width: 1023px) {
+        padding: 20px;
+        flex: 0 0 100%;
+    }
+    @media (max-width: 767px) {
+        padding: 15px;
+    }
     &__header {
         display: flex;
         justify-content: space-between;
@@ -689,6 +627,9 @@ const changeCatalog = (btn, catalog) => {
         flex-wrap: wrap;
         gap: 10px;
         margin-bottom: 15px;
+        @media (max-width: 539px) {
+            flex-direction: column;
+        }
         & button {
             flex: 1;
             display: flex;
@@ -715,6 +656,14 @@ const changeCatalog = (btn, catalog) => {
         box-shadow: 0px 0px 3px 0px rgba(38, 117, 255, 0.45);
         padding: 30px;
         margin-bottom: 35px;
+        @media (max-width: 1023px) {
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        @media (max-width: 767px) {
+            padding: 15px;
+            margin-bottom: 15px;
+        }
         & button {
             color: rgb(82, 156, 80);
             display: flex;
@@ -796,6 +745,9 @@ const changeCatalog = (btn, catalog) => {
         border-color: rgb(202, 221, 255);
         margin-top: 15px;
         padding: 25px;
+        @media (max-width: 1023px) {
+            display: none;
+        }
     }
 
     &__lead {
@@ -833,6 +785,9 @@ const changeCatalog = (btn, catalog) => {
         gap: 10px;
         margin-top: 20px;
         padding: 0 20px;
+        @media (max-width: 1023px) {
+            display: none;
+        }
     }
 
     &__big-btn {
@@ -893,6 +848,7 @@ const changeCatalog = (btn, catalog) => {
 .object {
 
     &__footer {
+        overflow: auto;
     }
 
     &__footer-nav {
@@ -900,6 +856,10 @@ const changeCatalog = (btn, catalog) => {
         gap: 20px;
         margin-top: 20px;
         margin-bottom: 30px;
+        @media (max-width: 767px) {
+            margin-top: 10px;
+            margin-bottom: 15px;
+        }
     }
 
     &__footer-nav-item {
@@ -909,9 +869,16 @@ const changeCatalog = (btn, catalog) => {
         border-radius: 8px;
         padding: 5px ;
         cursor: pointer;
+        @media (max-width: 767px) {
+            gap: 5px;
+        }
         & svg {
             width: 30px;
             height: 30px;
+            @media (max-width: 767px) {
+                width: 20px;
+                height: 20px;
+            }
         }
         &.active {
             color: var(--var-blue);

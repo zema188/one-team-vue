@@ -44,7 +44,7 @@ Build the application for production:
 
 ```bash
 # npm
-npm run build
+    npm run build
 
 # pnpm
 pnpm run build

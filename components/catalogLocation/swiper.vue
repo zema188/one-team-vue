@@ -64,5 +64,7 @@ onMounted(() => {
 
 
 <style lang="scss" scoped>
-
+.slide {
+  height: auto;
+}
 </style>

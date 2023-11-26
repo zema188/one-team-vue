@@ -89,6 +89,7 @@ let mobileMenuIsActive = ref(false)
     <header-mobile-menu
         v-model:mobileMenuIsActive="mobileMenuIsActive"
     />
+    <header-sticky-header/>
 </template>
 
 <style lang="scss" scoped>

@@ -850,6 +850,7 @@ const footerNav = ref([
         align-items: center;
         border-radius: 8px;
         padding: 5px ;
+        border: 2px solid transparent;
         cursor: pointer;
         @media (max-width: 767px) {
             gap: 5px;

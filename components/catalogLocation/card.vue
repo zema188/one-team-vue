@@ -53,6 +53,7 @@ const props = defineProps({
     background: rgb(41,42,44);
     color: #fff;
     padding: 40px 30px 50px;
+    height: 100%;
     &.red {
         & .icon-pdf {
             & svg {

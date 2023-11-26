@@ -43,8 +43,14 @@ const emit = defineEmits('changeFilter')
 
     &__list-btn {
         border: 2px solid transparent;
+        &:hover {
+            color: var(--var-blue-dark);
+        }
         &.btn_blue-border {
             border: 2px solid var(--var-blue);
+            &:hover {
+                color: #fff;
+            }
         }
         &.btn_brown-border {
             border: 2px solid var(--var-brown);

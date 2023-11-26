@@ -1,4 +1,8 @@
 <script setup>
+import useCatalog from '@/mixins.js/catalog.js';
+const { changeCatalog, getFormattedDate } = useCatalog();
+
+
 const catalogLocations = ref({
     objects: [
         {
@@ -76,22 +80,13 @@ const catalogPrice = ref({
     ],
 })
 
-
-const changeCatalog = (btn, catalog) => {
-    catalog.filterList.forEach(el => {
-        if(el.active) {
-            el.active = false
-        }
-    });
-    btn.active = true
-}
 </script>
 
 <template>
     <object-card/>
     <catalog-location
         :title="'Свежие каталоги по локациям'"
-        :subtitle="'Обновлено 19.11.2023'"
+        :subtitle="'Обновлено ' + new Date().toLocaleDateString()"
         :data="catalogLocations"
         @changeFilter="(btn) => changeCatalog(btn, catalogLocations)"
     />
@@ -104,7 +99,7 @@ const changeCatalog = (btn, catalog) => {
     />
     <catalog-val
         :title="'Общие каталоги по стоимости'"
-        :subtitle="'Обновлено 19.11.2023'"
+        :subtitle="'Обновлено ' + new Date().toLocaleDateString()"
         :data="catalogPrice"
         @changeFilter="(btn) => changeCatalog(btn, catalogPrice)"
     />
@@ -117,7 +112,7 @@ const changeCatalog = (btn, catalog) => {
             Лучшие объекты
         </template>
         <template v-slot:subtitle>
-            на 23.11.2023
+            на {{ new Date().toLocaleDateString() }}
         </template>
     </object-list-objects>
     <object-list-objects
@@ -127,7 +122,7 @@ const changeCatalog = (btn, catalog) => {
             Сданные объекты
         </template>
         <template v-slot:subtitle>
-            на 23.11.2023
+            на {{ new Date().toLocaleDateString() }}
         </template>
     </object-list-objects>
 </template>

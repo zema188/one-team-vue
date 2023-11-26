@@ -1,4 +1,10 @@
 <script setup>
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import 'swiper/css';
+
+import useCatalogSwiper from '@/mixins.js/swiperCatalog.js';
+const { onSwiper, goToSlide, swiperInstance } = useCatalogSwiper();
+
 const props = defineProps({
     title: {
         type: String,
@@ -15,6 +21,11 @@ const props = defineProps({
 })
 const filterStyle = ref({color: '_blue-border'})
 const emit = defineEmits('changeFilter')
+
+
+watch(() => {
+  goToSlide(props.data.activeSlide)
+});
 </script>
 
 <template>
@@ -42,9 +53,20 @@ const emit = defineEmits('changeFilter')
                 {{ region }}
             </layouts-button>
         </div>
-        <catalog-location-swiper
-            :objects="props.data.objects"
-        />
+        <swiper
+            :slides-per-view="1"
+            :space-between="10"
+            @swiper="onSwiper"
+        >
+            <swiper-slide class="slide"
+                v-for="(card, index) of [1,2,3,4,5]" :key="index"
+            >
+            <catalog-location-swiper
+                :objects="props.data.objects"
+            />
+            </swiper-slide>
+        </swiper>
+
     </div>
 </template>
 

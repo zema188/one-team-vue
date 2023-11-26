@@ -1,15 +1,11 @@
 <script setup>
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
+
+
 let slidePerView = ref(3.2)
 let spaceBetween = ref(30)
-const onSwiper = (swiper) => {
-  console.log(swiper);
-};
 
-const onSlideChange = () => {
-  console.log('slide change');
-};
 const props = defineProps({
     objects: {
         type: Array,
@@ -47,8 +43,6 @@ onMounted(() => {
     <swiper
       :slides-per-view="slidePerView"
       :space-between="spaceBetween"
-      @swiper="onSwiper"
-      @slideChange="onSlideChange"
     >
       <swiper-slide class="slide"
         v-for="(card, index) in props.objects" :key="index"

@@ -1,27 +1,25 @@
-<script>
-  import { Swiper, SwiperSlide } from 'swiper/vue';
+<script setup>
+import { ref } from 'vue';
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import 'swiper/css';
 
-  // Import Swiper styles
-  import 'swiper/css';
+import useCatalogSwiper from '@/mixins.js/swiperCatalog.js';
+const { onSwiper, goToSlide, swiperInstance } = useCatalogSwiper();
 
-  export default {
-    components: {
-      Swiper,
-      SwiperSlide,
-    },
-    setup() {
-      const onSwiper = (swiper) => {
-        console.log(swiper);
-      };
-      const onSlideChange = () => {
-        console.log('slide change');
-      };
-      return {
-        onSwiper,
-        onSlideChange,
-      };
-    },
-  };
+
+const props = defineProps({
+  activeSlide: {
+    type: Number,
+    requierd: true,
+  }
+})
+
+
+watch(() => {
+  goToSlide(props.activeSlide)
+});
+
+
 </script>
 
 <template>
@@ -31,8 +29,7 @@
     @swiper="onSwiper"
     @slideChange="onSlideChange"
   >
-    <swiper-slide class="slide"
-    >
+    <swiper-slide class="slide">
       <div class="slide__block">
         <img class="pic" src="@/assets/images/1_6.webp">
         <div class="info">
@@ -94,6 +91,74 @@
               </li>
               <li>
                 Калкан
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </swiper-slide>
+    <swiper-slide class="slide">
+      <div class="slide__block">
+        <img class="pic" src="@/assets/images/banner_13.webp">
+        <div class="info">
+          <div class="subtitle">
+            Cyprus
+          </div>
+          <button class="btn btn-catalog">
+            Перейти к каталогу
+            <icons-base
+              class=""
+              width="25"
+              height="25"
+              icon-name="earth"
+            ><icons-earth /></icons-base>
+          </button>
+          <p>
+            Недвижимость Кипра. Побережье Средиземного моря, уютные бухты. В базе более 1000 объектов для жизни и инвестиций.
+          </p>
+        </div>
+      </div>
+      <div class="slide__block">
+        <img class="pic" src="@/assets/images/banner_5.webp">
+        <div class="info">
+          <div class="subtitle">
+            New book
+            <span>
+              Для инвестиций и жизни на Кипре
+            </span>
+          </div>
+          <div class="action">
+            <button class="btn-download">
+              <span>Скачать</span>
+            </button>
+            <icons-base
+              class=""
+              width="70"
+              height="40"
+              icon-name="pdf"
+            ><icons-pdf /></icons-base>
+          </div>
+          <div class="lists">
+            <ul>
+              <span class="list-subtitle">
+                Северный кипр:
+              </span>
+              <li>
+                Фамагуста
+              </li>
+              <li>
+                Кирения
+              </li>
+            </ul>
+            <ul>
+              <span class="list-subtitle">
+                Южный кипр:
+              </span>
+              <li>
+                Лимасолл
+              </li>
+              <li>
+                Никосия
               </li>
             </ul>
           </div>

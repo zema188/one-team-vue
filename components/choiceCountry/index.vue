@@ -28,7 +28,7 @@ const emit = defineEmits('changeFilter')
             @changeFilter="(btn) => emit('changeFilter', btn)"
         />
         <choice-country-swiper
-            
+            :activeSlide="props.data.activeSlide"
         />
     </div>
 </template>

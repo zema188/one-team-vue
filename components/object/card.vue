@@ -49,7 +49,7 @@ const footerNav = ref([
 <template>
     <div class="object container">
         <div class="object__nav">
-            <nuxt-link class="object__nav-item" to="">Главная</nuxt-link>
+            <nuxt-link class="object__nav-item" to="/">Главная</nuxt-link>
             <nuxt-link class="object__nav-item" to="">Турция</nuxt-link>
             <nuxt-link class="object__nav-item" to="">Аланья</nuxt-link>
             <nuxt-link class="object__nav-item" to="">район Каргыджак</nuxt-link>
@@ -99,13 +99,79 @@ const footerNav = ref([
                         </div>
                     </div>
                     <div class="object__lead">
-                        <img src="@/assets/images/svg-1.svg">
+                        <img src="@/assets/images/advantages-2.svg">
                         <div>
                             <span>
-                                Стадия:
+                                Дата сдачи:
                             </span>
                             <p>
-                                Строится
+                                2024-09-01
+                            </p>
+                        </div>
+                    </div>
+                    <div class="object__lead">
+                        <img src="@/assets/images/advantages-3.svg">
+                        <div>
+                            <span>
+                                Отделка:
+                            </span>
+                            <p>
+                                Да
+                            </p>
+                        </div>
+                    </div>
+                    <div class="object__lead">
+                        <img src="@/assets/images/advantages-4.svg">
+                        <div>
+                            <span>
+                                Дней до сдачи:
+                            </span>
+                            <p>
+                                283
+                            </p>
+                        </div>
+                    </div>
+                    <div class="object__lead">
+                        <img src="@/assets/images/advantages-5.svg">
+                        <div>
+                            <span>
+                                Паркинг:
+                            </span>
+                            <p>
+                                Крытая
+                            </p>
+                        </div>
+                    </div>
+                    <div class="object__lead">
+                        <img src="@/assets/images/advantages-6.svg">
+                        <div>
+                            <span>
+                                Рассрочка:
+                            </span>
+                            <p>
+                                До конца строительства
+                            </p>
+                        </div>
+                    </div>
+                    <div class="object__lead">
+                        <img src="@/assets/images/advantages-7.svg">
+                        <div>
+                            <span>
+                                Район:
+                            </span>
+                            <p class="blue">
+                                Каргыджак
+                            </p>
+                        </div>
+                    </div>
+                    <div class="object__lead">
+                        <img src="@/assets/images/advantages-8.svg">
+                        <div>
+                            <span>
+                                Рейтинг:
+                            </span>
+                            <p class="blue">
+                                100
                             </p>
                         </div>
                     </div>
@@ -113,10 +179,21 @@ const footerNav = ref([
                         <img src="@/assets/images/svg-1.svg">
                         <div>
                             <span>
-                                Стадия:
+                                Генератор:
                             </span>
                             <p>
-                                Строится
+                                Да
+                            </p>
+                        </div>
+                    </div>
+                    <div class="object__lead">
+                        <img src="@/assets/images/advantages-9.svg">
+                        <div>
+                            <span>
+                                До моря:
+                            </span>
+                            <p>
+                                2000 м
                             </p>
                         </div>
                     </div>
@@ -124,10 +201,10 @@ const footerNav = ref([
                         <img src="@/assets/images/svg-1.svg">
                         <div>
                             <span>
-                                Стадия:
+                                Бассейн:
                             </span>
                             <p>
-                                Строится
+                                Да
                             </p>
                         </div>
                     </div>
@@ -135,120 +212,21 @@ const footerNav = ref([
                         <img src="@/assets/images/svg-1.svg">
                         <div>
                             <span>
-                                Стадия:
+                                Вид на море:
                             </span>
                             <p>
-                                Строится
+                                Да
                             </p>
                         </div>
                     </div>
                     <div class="object__lead">
-                        <img src="@/assets/images/svg-1.svg">
+                        <img src="@/assets/images/advantages-10.svg">
                         <div>
                             <span>
-                                Стадия:
+                                ПВ:
                             </span>
                             <p>
-                                Строится
-                            </p>
-                        </div>
-                    </div>
-                    <div class="object__lead">
-                        <img src="@/assets/images/svg-1.svg">
-                        <div>
-                            <span>
-                                Стадия:
-                            </span>
-                            <p>
-                                Строится
-                            </p>
-                        </div>
-                    </div>
-                    <div class="object__lead">
-                        <img src="@/assets/images/svg-1.svg">
-                        <div>
-                            <span>
-                                Стадия:
-                            </span>
-                            <p>
-                                Строится
-                            </p>
-                        </div>
-                    </div>
-                    <div class="object__lead">
-                        <img src="@/assets/images/svg-1.svg">
-                        <div>
-                            <span>
-                                Стадия:
-                            </span>
-                            <p>
-                                Строится
-                            </p>
-                        </div>
-                    </div>
-                    <div class="object__lead">
-                        <img src="@/assets/images/svg-1.svg">
-                        <div>
-                            <span>
-                                Стадия:
-                            </span>
-                            <p>
-                                Строится
-                            </p>
-                        </div>
-                    </div>
-                    <div class="object__lead">
-                        <img src="@/assets/images/svg-1.svg">
-                        <div>
-                            <span>
-                                Стадия:
-                            </span>
-                            <p>
-                                Строится
-                            </p>
-                        </div>
-                    </div>
-                    <div class="object__lead">
-                        <img src="@/assets/images/svg-1.svg">
-                        <div>
-                            <span>
-                                Стадия:
-                            </span>
-                            <p>
-                                Строится
-                            </p>
-                        </div>
-                    </div>
-                    <div class="object__lead">
-                        <img src="@/assets/images/svg-1.svg">
-                        <div>
-                            <span>
-                                Стадия:
-                            </span>
-                            <p>
-                                Строится
-                            </p>
-                        </div>
-                    </div>
-                    <div class="object__lead">
-                        <img src="@/assets/images/svg-1.svg">
-                        <div>
-                            <span>
-                                Стадия:
-                            </span>
-                            <p>
-                                Строится
-                            </p>
-                        </div>
-                    </div>
-                    <div class="object__lead">
-                        <img src="@/assets/images/svg-1.svg">
-                        <div>
-                            <span>
-                                Стадия:
-                            </span>
-                            <p>
-                                Строится
+                                30%
                             </p>
                         </div>
                     </div>
@@ -604,6 +582,7 @@ const footerNav = ref([
             line-height: 1.4;
             letter-spacing: 0em;
             opacity: 0.8;
+
         }
     }
 
@@ -774,6 +753,9 @@ const footerNav = ref([
             line-height: 1.6;
             letter-spacing: 0em;
             opacity: 0.85;
+            &.blue {
+                color: var(--var-blue);
+            }
         }
     }
 }

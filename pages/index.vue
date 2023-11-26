@@ -1,4 +1,7 @@
 <script setup>
+import useCatalog from '@/mixins.js/catalog.js';
+const { changeCatalog, getFormattedDate } = useCatalog();
+
 const countries = ref({
     objects: [
         {
@@ -15,7 +18,8 @@ const countries = ref({
             text: 'Кипр',
             quantity: null,
         }
-    ]
+    ],
+    activeSlide: 0
 })
 
 const bestСhoice = ref({
@@ -71,7 +75,8 @@ const bestСhoice = ref({
             text: 'Анталья',
             quantity: 15,
         }
-    ]
+    ],
+    activeSlide: 0
 })
 
 
@@ -190,15 +195,6 @@ const catalogPrice = ref({
         },
     ],
 })
-
-const changeCatalog = (btn, catalog) => {
-    catalog.filterList.forEach(el => {
-        if(el.active) {
-            el.active = false
-        }
-    });
-    btn.active = true
-}
 </script>
 
 <template>
@@ -208,7 +204,7 @@ const changeCatalog = (btn, catalog) => {
         @changeFilter="(btn) => changeCatalog(btn, countries)"
     />
     <catalog
-        :title="'Лучший выбор на 17 ноября'"
+        :title="'Лучший выбор на ' + getFormattedDate()"
         :subtitle="'Выберите направление'"
         :data="bestСhoice"
         :filterStyle="{color: '_blue-border'}"
@@ -230,13 +226,13 @@ const changeCatalog = (btn, catalog) => {
     />
     <catalog-location
         :title="'Свежие каталоги по локациям'"
-        :subtitle="'Обновлено 19.11.2023'"
+        :subtitle="'Обновлено ' + new Date().toLocaleDateString()"
         :data="catalogLocations"
         @changeFilter="(btn) => changeCatalog(btn, catalogLocations)"
     />
     <catalog-val
         :title="'Свежие каталоги по локациям'"
-        :subtitle="'Обновлено 19.11.2023'"
+        :subtitle="'Обновлено ' + new Date().toLocaleDateString()"
         :data="catalogPrice"
         @changeFilter="(btn) => changeCatalog(btn, catalogPrice)"
     />

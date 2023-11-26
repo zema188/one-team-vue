@@ -86,42 +86,9 @@ let mobileMenuIsActive = ref(false)
             </div>
         </header>
     </div>
-    <div class="header-m"
-    :class="{active: mobileMenuIsActive}"
-    >
-        <div class="header-m__content">
-            <nav class="header-m__nav">
-                <nuxt-link to="/" class="header-m__nav-item">
-                    Главная
-                </nuxt-link>
-                <nuxt-link to="/questions" class="header-m__nav-item">
-                    Вопросы и ответы
-                </nuxt-link>
-                <nuxt-link to="/company" class="header-m__nav-item">
-                    Компания
-                </nuxt-link>
-                <nuxt-link to="/services" class="header-m__nav-item">
-                    Услуги
-                </nuxt-link>
-                <nuxt-link to="/about" class="header-m__nav-item">
-                    Где работаем
-                </nuxt-link>
-                <nuxt-link to="/career" class="header-m__nav-item">
-                    Карьера
-                </nuxt-link>
-            </nav>
-            <div class="header-m__close toggle-menu"
-                @click="mobileMenuIsActive = !mobileMenuIsActive"
-            >
-                <icons-base
-                    width="25"
-                    height="25"
-                    icon-name="close"
-                    iconColor="#fff"
-                ><icons-close /></icons-base>
-            </div>
-        </div>
-    </div>
+    <header-mobile-menu
+        v-model:mobileMenuIsActive="mobileMenuIsActive"
+    />
 </template>
 
 <style lang="scss" scoped>
@@ -288,47 +255,6 @@ let mobileMenuIsActive = ref(false)
   }
 }
 
-.header-m {
-      background: #e5e3e3;
-      max-width: 290px;
-      width: 63%;
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 10;
-      left: -100%;
-      transition: .4s;
-      padding: 37px 15px 0px;
-      height: 100vh;
-      overflow: auto;
-      &.active {
-            left: 0;
-      }
-      &__content {
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            padding-bottom: 100px;
-      }
-      &__nav {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 50px;
-            gap: 7px;
-      }
-      &__nav-item {
-            color: #000;
-      }
-}
 
-.header-m__close {
-      position: absolute;
-      right: 10px;
-      top: 19px;
-      & img {
-            width: 13px;
-            height: 13px;
-      }
-}
 
 </style>

@@ -1,16 +1,24 @@
 <script setup>
-
+const props = defineProps({
+    data: {
+        type: Object,
+        required: true
+    }
+})
 </script>
 
 <template>
-    <div class="card">
-        <img class="bg" src="@/assets/images/about-1.jpg">
+    <div class="card" v-if="props.data">
+        <img class="bg" 
+            :src="props.data.image">
         <div class="card__header">
             <p>
-                Турция
+                {{ props.data.name }}
             </p>
             <div class="card__header-flags">
-                <img src="@/assets/images/flag_of_turkey.png">
+                <img :src="flag"
+                    v-for="flag of props.data.flags" :key="flag"
+                >
             </div>
         </div>
         <div class="card__content">
@@ -18,20 +26,20 @@
                 Для всей семьи
             </p>
             <div class="hashtags">
-                <div class="hashtags__list">
+                <div class="hashtags__list" v-if="props.data.vnj">
                     <div class="hashtag">
                         ВНЖ
                     </div>
                     <div class="hashtag blue">
-                        Оформление: за 2 недели
+                        {{ props.data.vnj }}
                     </div>
                 </div>
-                <div class="hashtags__list">
+                <div class="hashtags__list" v-if="props.data.citizenship">
                     <div class="hashtag">
-                        Получение
+                        Гражданство
                     </div>
                     <div class="hashtag blue">
-                        Для всей семьи
+                        {{ props.data.citizenship }}
                     </div>
                 </div>
                 <div class="hashtags__list">
@@ -140,6 +148,7 @@
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
+    flex: 0 0 100%;
 }
 .bg {
     position: absolute;

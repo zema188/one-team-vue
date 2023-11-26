@@ -20,7 +20,7 @@ defineProps({
 const resizeSwiper = () => {
   const widthWindow = window.innerWidth
     if(widthWindow > 1023) {
-      slidePerView.value = 3.2
+      slidePerView.value = 4
     }
     if(widthWindow <= 1023) {
       slidePerView.value = 2.4
@@ -46,8 +46,6 @@ onMounted(() => {
   <swiper
     :slides-per-view="slidePerView"
     :space-between="spaceBetween"
-    @swiper="onSwiper"
-    @slideChange="onSlideChange"
   >
     <swiper-slide class="slide slide_text">
       <p class="title">

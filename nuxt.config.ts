@@ -6,6 +6,9 @@ export default defineNuxtConfig({
   build: {
 
   },
+  plugins: [
+    { src: '~/plugins/maps', mode: 'client' },
+  ],
   vite: {
     define: {
       'process.env.DEBUG': false,

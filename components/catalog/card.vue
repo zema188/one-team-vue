@@ -5,24 +5,40 @@ const props = defineProps({
         required: true
     },
 })
+
+// const minSquareObject = computed(() => {
+//   if (!props.object || Object.keys(props.object).length === 0) {
+//     return ''
+//   }
+//   return Math.min(...props.object.value.layouts.map(layout => layout.total_size));
+// });
+
+// const maxSquareObject = computed(() => {
+//     if (!props.object || Object.keys(props.object).length === 0) {
+//         return ''
+//     }
+//     return Math.max(...props.object.value.layouts.map(layout => layout.total_size))
+// })
+
 </script>
 
 <template>
+    
     <div class="card">
-        <img class="card__pic" src="@/assets/images/2.webp">
+        <img class="card__pic"
+        v-if=props.object.photos
+            :src="`https://one-team.pro/${props.object.photos[0].preview}`"
+        >
         <div class="card__header">
             <div class="card__hashtags">
                 <div class="card__hashtag _blue">
-                    {{ props.object.country }}
-                    <!-- Аланья -->
+                    {{ props.object.city }}
                 </div>
-                <div class="card__hashtag">
+                <!-- <div class="card__hashtag">
                     {{  props.object.region }}
-                    <!-- Каргыджак -->
-                </div>
+                </div> -->
                 <div class="card__hashtag">
-                    {{  props.object.squareMeter }}
-                    <!-- 4143 $/м² -->
+                    {{  Math.floor(props.object.price_size) }} €/м² 
                 </div>
             </div>
             <div class="card__favorite">
@@ -36,16 +52,15 @@ const props = defineProps({
         <div class="card__text">
             <p>
                 {{  props.object.name }}
-                <!-- Richmond Villas -->
             </p>
             <span>
-                {{  props.object.square }}
-                <!-- от 268 - до 377 м  -->
+                <!-- от {{ minSquareObject }}м<sup>2</sup> до {{ maxSquareObject }}м<sup>2</sup> -->
+                от 268 - до 377 м 
             </span>
         </div>
         <div class="card__footer">
             <p class="card__footer-price">
-                {{  props.object.price }}
+                от {{  props.object.min_price }} €
                 <!-- от 1110439 $ -->
             </p>
             <div class="card__footer-info">

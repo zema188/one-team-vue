@@ -21,7 +21,7 @@ const emit = defineEmits('changeFilter')
             :type="'button'"
             @click="emit('changeFilter', btn)"
         >
-        {{ btn.text }}
+        {{ btn.name }}
         <span>
             <sup>
                 {{ btn.quantity }}

@@ -23,12 +23,13 @@ const emit = defineEmits('changeFilter')
             </div>
         </div>
         <layouts-filter-list
-            :list="props.data.filterList"
+            :list="props.data.filter"
             :style="props.filterStyle"
             @changeFilter="(btn) => emit('changeFilter', btn)"
         />
         <choice-country-swiper
             :activeSlide="props.data.activeSlide"
+            :data="props.data.objects"
         />
     </div>
 </template>

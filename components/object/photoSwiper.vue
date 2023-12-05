@@ -1,6 +1,7 @@
 <script>
 import { ref, onMounted } from 'vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
+import { defineProps } from 'vue';
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
@@ -11,6 +12,12 @@ export default {
   components: {
     Swiper,
     SwiperSlide,
+  },
+  props: {
+    photos: {
+        type: Array,
+        required: true
+    }
   },
   setup() {
     const thumbsSwiper = ref(null);
@@ -64,35 +71,10 @@ export default {
       :modules="modules"
       class="big"
     >
-        <swiper-slide>
-            <img src="@/assets/images/obj-1.webp"/>
-        </swiper-slide>
-        <swiper-slide>
-            <img src="@/assets/images/obj-2.webp"/>
-        </swiper-slide>
-        <swiper-slide>
-            <img src="@/assets/images/obj-3.webp"/>
-        </swiper-slide>
-        <swiper-slide>
-            <img src="@/assets/images/obj-4.webp"/>
-        </swiper-slide>
-        <swiper-slide>
-            <img src="@/assets/images/obj-5.webp"/>
-        </swiper-slide>
-        <swiper-slide>
-            <img src="@/assets/images/obj-6.webp"/>
-        </swiper-slide>
-        <swiper-slide>
-            <img src="@/assets/images/obj-7.webp"/>
-        </swiper-slide>
-        <swiper-slide>
-            <img src="@/assets/images/obj-8.webp"/>
-        </swiper-slide>
-        <swiper-slide>
-            <img src="@/assets/images/obj-9.webp"/>
-        </swiper-slide>
-        <swiper-slide>
-            <img src="@/assets/images/obj-10.webp"/>
+        <swiper-slide
+            v-for="photo in photos" :key="photo.id"
+        >
+            <img :src="`https://one-team.pro/${photo.preview}`"/>
         </swiper-slide>
     </swiper>
     <swiper
@@ -104,35 +86,10 @@ export default {
       :modules="modules"
       class="small"
     >
-        <swiper-slide>
-            <img src="@/assets/images/obj-1.webp"/>
-        </swiper-slide>
-        <swiper-slide>
-            <img src="@/assets/images/obj-2.webp"/>
-        </swiper-slide>
-        <swiper-slide>
-            <img src="@/assets/images/obj-3.webp"/>
-        </swiper-slide>
-        <swiper-slide>
-            <img src="@/assets/images/obj-4.webp"/>
-        </swiper-slide>
-        <swiper-slide>
-            <img src="@/assets/images/obj-5.webp"/>
-        </swiper-slide>
-        <swiper-slide>
-            <img src="@/assets/images/obj-6.webp"/>
-        </swiper-slide>
-        <swiper-slide>
-            <img src="@/assets/images/obj-7.webp"/>
-        </swiper-slide>
-        <swiper-slide>
-            <img src="@/assets/images/obj-8.webp"/>
-        </swiper-slide>
-        <swiper-slide>
-            <img src="@/assets/images/obj-9.webp"/>
-        </swiper-slide>
-        <swiper-slide>
-            <img src="@/assets/images/obj-10.webp"/>
+        <swiper-slide
+            v-for="photo in photos" :key="photo.id"
+        >
+            <img :src="`https://one-team.pro/${photo.preview}`"/>
         </swiper-slide>
     </swiper>
 </template>

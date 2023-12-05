@@ -1,130 +1,76 @@
 <script setup>
 import useCatalog from '@/mixins.js/catalog.js';
 const { changeCatalog, getFormattedDate } = useCatalog();
+const { $axiosPlugin } = useNuxtApp()
 
 const countries = ref({
-    objects: [
-        {
-
-        },
-    ],
-    filterList: [
-        {
-            text: 'Турция',
-            quantity: null,
-            active: true
-        },
-        {
-            text: 'Кипр',
-            quantity: null,
-        }
-    ],
+    objects: [],
+    filter: [],
     activeSlide: 0
 })
+const getCountries = async() => {
+    try {
+        const url = `https://one-team.pro/api/new_site/index`
+        const response = await $axiosPlugin.get(url)
+        countries.value.objects = [...response.data.countries]
+        response.data.countries.forEach(el => {
+            countries.value.filter.push({
+                name: el.name,
+            })
+        });
+        countries.value.filter[0].active = true
+        console.log(response.data)
+
+        // лучшие 
+        response.data.cities.forEach(el => {
+            bestСhoice.value.filter.push({
+                name: el.name,
+                quantity: el.best_choice.length
+            })
+            bestСhoice.value.objects.push(
+                [...el.best_choice]
+            )
+            bestСhoice.value.filter[0].active = true
+        });
+
+        // премьеры 
+        response.data.cities.forEach(el => {
+            premieres.value.filter.push({
+                name: el.name,
+                quantity: el.market_premier.length
+            })
+            premieres.value.objects.push(
+                [...el.market_premier]
+            )
+            premieres.value.filter[0].active = true
+        });
+    } catch (err) {
+        console.error(err)
+    }
+}
 
 const bestСhoice = ref({
-    objects: [
-        {
-            country: 'Аланья',
-            region: 'Каргыджак',
-            squareMeter: '4143 $/м²',
-            name: 'Richmond Villas',
-            square: 'от 268 - до 377 м',
-            price: 'от 1110439 $',
-            id: '291',
-            quantity: '16',
-        },
-        {
-            country: 'Аланья',
-            region: 'Каргыджак',
-            squareMeter: '4143 $/м²',
-            name: 'Richmond Villas',
-            square: 'от 268 - до 377 м',
-            price: 'от 1110439 $',
-            id: '292',
-            quantity: '20',
-        },
-        {
-            country: 'Аланья',
-            region: 'Каргыджак',
-            squareMeter: '4143 $/м²',
-            name: 'Richmond Villas',
-            square: 'от 268 - до 377 м',
-            price: 'от 1110439 $',
-            id: '291',
-            quantity: '16',
-        },
-        {
-            country: 'Аланья',
-            region: 'Каргыджак',
-            squareMeter: '4143 $/м²',
-            name: 'Richmond Villas',
-            square: 'от 268 - до 377 м',
-            price: 'от 1110439 $',
-            id: '292',
-            quantity: '20',
-        },
-    ],
-    filterList: [
-        {
-            text: 'Аланья',
-            quantity: 14,
-            active: true
-        },
-        {
-            text: 'Анталья',
-            quantity: 15,
-        }
-    ],
+    objects: [],
+    filter: [],
     activeSlide: 0
 })
 
 
 const premieres = ref({
-    objects: [
-        {
-            country: 'Аланья',
-            region: 'Оба',
-            squareMeter: '2992 $/м²',
-            name: 'The Colosseum',
-            square: 'от 268 - до 377 м',
-            price: 'от 1110439 $',
-            id: '291',
-            quantity: '16',
-        },
-        {
-            country: 'Аланья',
-            region: 'Кызлар Пынары',
-            squareMeter: '5432 $/м²',
-            name: 'Miss Cleopatra',
-            square: 'от 268 - до 377 м',
-            price: 'от 1110439 $',
-            id: '292',
-            quantity: '20',
-        },
-    ],
-    filterList: [
-        {
-            text: 'Аланья',
-            quantity: 14,
-            active: true
-        },
-        {
-            text: 'Анталья',
-            quantity: 15,
-        }
-    ]
+    objects: [],
+    filter: [],
+    activeSlide: 0
 })
 
 const instructions = ref({
     filterList: [
         {
-            text: 'Аланья',
+            name: 'Аланья',
             quantity: 14,
             active: true
         },
         {
-            text: 'Анталья',
+            name: 'Анталья',
             quantity: 15,
         }
     ]
@@ -151,16 +97,16 @@ const catalogLocations = ref({
     ],
     filterList: [
         {
-            text: 'Турция',
+            name: 'Турция',
             quantity: null,
             active: true
         },
         {
-            text: 'Кипр',
+            name: 'Кипр',
             quantity: null,
         },
         {
-            text: 'ОАЭ',
+            name: 'ОАЭ',
             quantity: null,
         }
     ],
@@ -185,16 +131,22 @@ const catalogPrice = ref({
     ],
     filterList: [
         {
-            text: 'до 350 000 $ ',
+            name: 'до 350 000 $ ',
             quantity: null,
             active: true
         },
         {
-            text: 'Премиум',
+            name: 'Премиум',
             quantity: null,
         },
     ],
 })
+
+onMounted(() => {
+    getCountries()
+})
+
+
 </script>
 
 <template>

@@ -2,7 +2,6 @@
 import useCatalog from '@/mixins.js/catalog.js';
 const { changeCatalog, getFormattedDate } = useCatalog();
 
-
 const catalogLocations = ref({
     objects: [
         {
@@ -79,7 +78,6 @@ const catalogPrice = ref({
         },
     ],
 })
-
 </script>
 
 <template>

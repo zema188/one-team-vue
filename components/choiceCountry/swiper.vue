@@ -11,6 +11,10 @@ const props = defineProps({
   activeSlide: {
     type: Number,
     requierd: true,
+  },
+  data: {
+    type: Object,
+    requierd: true,
   }
 })
 
@@ -29,14 +33,18 @@ watch(() => {
     @swiper="onSwiper"
     @slideChange="onSlideChange"
   >
-    <swiper-slide class="slide">
+    <swiper-slide class="slide"
+      v-for="slide of props.data" :key="slide.id"
+    >
       <div class="slide__block">
-        <img class="pic" src="@/assets/images/1_6.webp">
+        <img class="pic" 
+          :src="`https://one-team.pro/uploads/${slide.photo}`"
+        >
         <div class="info">
           <div class="subtitle">
-            Turkey
+            {{ slide.name }}
           </div>
-          <button class="btn btn-catalog">
+          <nuxt-link :to="`locations/${slide.slug}`" class="btn btn-catalog">
             Перейти к каталогу
             <icons-base
               class=""
@@ -44,7 +52,7 @@ watch(() => {
               height="25"
               icon-name="earth"
             ><icons-earth /></icons-base>
-          </button>
+          </nuxt-link>
           <p>
             Побережье Средиземного моря, уютные бухты Эгейского моря. В нашей актуальной базе более 5000 объектов для жизни и инвестиций.
           </p>
@@ -56,7 +64,7 @@ watch(() => {
           <div class="subtitle">
             New book
             <span>
-              Для инвестиций и жизни в Турции
+              Для инвестиций и жизни в {{ slide.name }}
             </span>
           </div>
           <div class="action">
@@ -70,19 +78,22 @@ watch(() => {
               icon-name="pdf"
             ><icons-pdf /></icons-base>
           </div>
-          <div class="lists">
+          <div class="lists"
+            v-if="slide.cities.length"
+          >
             <ul>
               <span class="list-subtitle">
                 Популярные места:
               </span>
-              <li>
-                Анталья
-              </li>
-              <li>
-                Аланья
+              <li
+                v-for="citie of slide.cities" :key="citie.id"
+              >
+                <nuxt-link :to="`locations/${slide.slug}/${citie.slug}`">
+                  {{ citie.name }}
+                </nuxt-link>
               </li>
             </ul>
-            <ul>
+            <!-- <ul>
               <span class="list-subtitle">
                 Остальные места:
               </span>
@@ -92,75 +103,7 @@ watch(() => {
               <li>
                 Калкан
               </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </swiper-slide>
-    <swiper-slide class="slide">
-      <div class="slide__block">
-        <img class="pic" src="@/assets/images/banner_13.webp">
-        <div class="info">
-          <div class="subtitle">
-            Cyprus
-          </div>
-          <button class="btn btn-catalog">
-            Перейти к каталогу
-            <icons-base
-              class=""
-              width="25"
-              height="25"
-              icon-name="earth"
-            ><icons-earth /></icons-base>
-          </button>
-          <p>
-            Недвижимость Кипра. Побережье Средиземного моря, уютные бухты. В базе более 1000 объектов для жизни и инвестиций.
-          </p>
-        </div>
-      </div>
-      <div class="slide__block">
-        <img class="pic" src="@/assets/images/banner_5.webp">
-        <div class="info">
-          <div class="subtitle">
-            New book
-            <span>
-              Для инвестиций и жизни на Кипре
-            </span>
-          </div>
-          <div class="action">
-            <button class="btn-download">
-              <span>Скачать</span>
-            </button>
-            <icons-base
-              class=""
-              width="70"
-              height="40"
-              icon-name="pdf"
-            ><icons-pdf /></icons-base>
-          </div>
-          <div class="lists">
-            <ul>
-              <span class="list-subtitle">
-                Северный кипр:
-              </span>
-              <li>
-                Фамагуста
-              </li>
-              <li>
-                Кирения
-              </li>
-            </ul>
-            <ul>
-              <span class="list-subtitle">
-                Южный кипр:
-              </span>
-              <li>
-                Лимасолл
-              </li>
-              <li>
-                Никосия
-              </li>
-            </ul>
+            </ul> -->
           </div>
         </div>
       </div>
@@ -319,7 +262,9 @@ ul {
   gap: 10px;
   flex-direction: column;
   li {
-    color: rgb(242, 242, 242);
+    & a {
+      color: rgb(242, 242, 242);
+    }
   }
 }
 

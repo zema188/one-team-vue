@@ -1,4 +1,7 @@
 <script setup>
+const { $axiosPlugin } = useNuxtApp()
+const route = useRoute()
+
 let activeBlock = ref('photos')
 const contentNav = ref([
     {
@@ -44,17 +47,81 @@ const footerNav = ref([
     },
 ])
 
+const object = ref({})
+const getObject = async() => {
+    try {
+        const url = `https://one-team.pro/api/houses/simple?country=${route.params.country}&id=${route.params.id}&locale=ru`
+        const response = await $axiosPlugin.get(url)
+        object.value = {...response.data}
+        console.log(object.value)
+    } catch (err) {
+        console.error(err)
+    }
+}
+const activeValute = ref('EUR')
+const valutes = ref([
+    {
+        value: '€',
+        name:  'EUR'
+    },
+    {
+        value: '$',
+        name:  'USD'
+    },
+    {
+        value: '₺',
+        name:  'TRY'
+    },
+    {
+        value: '₽',
+        name:  'RUB'
+    },
+    {
+        value: '£',
+        name:  'GBP'
+    },
+])
+
+const minSquareObject = computed(() => {
+    if(!object.value.layouts) return ''
+    return Math.min(...object.value.layouts.map(layout => layout.total_size))
+})
+
+const maxSquareObject = computed(() => {
+    if(!object.value.layouts) return ''
+    return Math.max(...object.value.layouts.map(layout => layout.total_size))
+})
+
+const buildLinkCountry = computed(() => {
+    if(!object.value.country) return ''
+    const link = `/locations/${object.value.country.slug}`;
+    return link;
+})
+
+onMounted(() => {
+    console.log(buildLinkCountry)
+    getObject()
+})
+
 </script>
 
 <template>
     <div class="object container">
         <div class="object__nav">
             <nuxt-link class="object__nav-item" to="/">Главная</nuxt-link>
-            <nuxt-link class="object__nav-item" to="">Турция</nuxt-link>
-            <nuxt-link class="object__nav-item" to="">Аланья</nuxt-link>
-            <nuxt-link class="object__nav-item" to="">район Каргыджак</nuxt-link>
+            <nuxt-link class="object__nav-item" :to="buildLinkCountry"
+                v-if="object.country"
+            >
+                {{ object.country.name }}
+            </nuxt-link>
+            <nuxt-link class="object__nav-item" to="">
+                {{ object.address }}
+            </nuxt-link>
         </div>
-        <div class="object__name">Виллы в Richmond Villas, в городе Аланья</div>
+        <div class="object__name">
+            <!-- Виллы в Richmond Villas, в городе Аланья -->
+            {{ object.name }}
+        </div>
         <div class="object__body">
             <div class="object__content">
                 <div class="object__content-nav">
@@ -69,9 +136,11 @@ const footerNav = ref([
                 <div class="object__block">
                     <object-photo-swiper
                         v-if="activeBlock === 'photos'"
+                        :photos="object.photo"
                     />
                     <object-layouts-swiper
                         v-if="activeBlock === 'layouts'"
+                        :layouts="object.layouts"
                     />
                     <object-videos
                         v-if="activeBlock === 'videos'"
@@ -259,11 +328,12 @@ const footerNav = ref([
             <div class="aside">
                 <div class="aside__header">
                     <div class="aside__price">
-                        <span class="active">
-                            $
-                        </span>
-                        <span>
-                            ₽
+                        <span class="valute"
+                            v-for="valute in valutes" :key="valute.name"
+                            :class="{active: activeValute === valute.name}"
+                            @click="activeValute = valute.name"
+                        >
+                            {{ valute.value }}
                         </span>
                     </div>
                     <div class="aside__header-action">
@@ -276,9 +346,10 @@ const footerNav = ref([
                     </div>
                 </div>
                 <div class="aside__info">
-                    <div class="aside__info-price">
+                    <div class="aside__info-price" v-if="object.price">
                         <span>
-                            от 1110439 $
+                            <!-- от 1110439 $ -->
+                            {{ object.price[activeValute] }}
                         </span>
                         <p>
                             4143 $/м
@@ -310,12 +381,13 @@ const footerNav = ref([
                 </div>
                 <div class="aside__list">
                     <div class="aside__list-body">
-                        <div class="aside__list-item">
+                        <div class="aside__list-item" v-if="object.country">
                             <span>
                                 Локация:
                             </span>
                             <p>
-                                Аланья, район Каргыджак
+                                <!-- Аланья, район Каргыджак -->
+                                {{ object.country.name }}
                             </p>
                         </div>
                         <div class="aside__list-item">
@@ -331,7 +403,7 @@ const footerNav = ref([
                                 Площадь:
                             </span>
                             <p>
-                                от 268 м<sup>2</sup> до 377 м<sup>2</sup>
+                                от {{ minSquareObject }}м<sup>2</sup> до {{ maxSquareObject }}м<sup>2</sup>
                             </p>
                         </div>
                     </div>
@@ -383,9 +455,18 @@ const footerNav = ref([
         <div class="object__footer-block">
             <object-details
                 v-if="activeFooterBlock === 'details'"
+                :description="object.description"
+                :objectName="object.name"
+                :photos="object.photo"
             />
             <object-description
                 v-if="activeFooterBlock === 'description'"
+                :description="object.description"
+            />
+            <object-map
+                v-if="activeFooterBlock === 'map'"
+                :lat="object.lat"
+                :long="object.long"
             />
         </div>
     </div>
@@ -512,7 +593,7 @@ const footerNav = ref([
     flex: 1;
     height: fit-content;
     position: sticky;
-    top: 20px;
+    top: 82px;
     @media (max-width: 1023px) {
         padding: 20px;
         flex: 0 0 100%;
@@ -542,6 +623,7 @@ const footerNav = ref([
             font-size: 14px;
             background-color: rgb(255, 255, 255);
             border: 1px solid rgb(45, 121, 254, 0.3);
+            cursor: pointer;
             &.active {
                 color: #fff;
                 background: rgb(45, 121, 254);;

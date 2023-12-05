@@ -1,14 +1,30 @@
+<script setup>
+const props = defineProps({
+    object: {
+        type: Object,
+        required: true
+    }
+})
+
+const buildLink = computed(() => {
+    const link = `/${props.object.country.slug}/object-${props.object.id}`;
+    return link;
+})
+</script>
+
 <template>
-    <div class="card">
+    <nuxt-link :to="buildLink" class="card">
         <div class="card__info">
-            <img class="card__pic" src="@/assets/images/ob-1.webp">
+            <img class="card__pic" 
+                :src="`https://one-team.pro/${props.object.photo[0].preview}`"
+            >
             <div class="card__info-header">
                 <div class="card__info-header-hashtags">
                     <div class="card__info-header-hashtag">
-                        Аланья
+                        {{ props.object.city.name }}
                     </div>
                     <div class="card__info-header-hashtag">
-                        1317 $/м²
+                        {{ Math.floor(props.object.price_size) }} €/м²
                     </div>
                 </div>
                 <div class="icons">
@@ -27,16 +43,16 @@
             </div>
             <div class="card__info-footer">
                 <div class="card__info-lead">
-                    <p>
+                    <!-- <p>
                         Дата сдачи: 2024-05-01
-                    </p>
-                    <p>
+                    </p> -->
+                    <!-- <p>
                         Отделка: Да
+                    </p> -->
+                    <p v-if="props.object.to_sea">
+                        До моря: {{ props.object.to_sea }}
                     </p>
-                    <p>
-                        До моря: 3000 м
-                    </p>
-                    <p>
+                    <p v-if="props.object.is_swimming">
                         Бассейн: Да
                     </p>
                 </div>
@@ -47,10 +63,10 @@
         </div>
         <div class="card__text">
             <div class="card__text-name">
-                La Datcha Futura
+                {{ props.object.name }}
             </div>
             <div class="card__text-subtitle">
-                Город Аланья, район Каргыджак
+                Город {{ props.object.city.name }}
             </div>
             <p>
                 Роскошные виллы с собственной внутренней инфраструктурой, включая тренажерный зал и личный кинотеатр.
@@ -60,10 +76,13 @@
             </p>
             <ul>
                 <li>
-                    от 1053795 $
+                    {{ props.object.min_price }} €
                 </li>
-                <li>
-                    от 800 до 800 м2
+                <li v-if="props.object.min_size !== props.object.max_size">
+                    от {{ props.object.min_size }} до {{ props.object.max_size }} м2
+                </li>
+                <li v-else>
+                    {{ props.object.max_size }} м2
                 </li>
                 <li>
                     <span style="color: var(--var-blue);">
@@ -91,12 +110,8 @@
                 </a>
             </div>
         </div>
-    </div>
+    </nuxt-link>
 </template>
-
-<script setup>
-
-</script>
 
 <style lang="scss" scoped>
 .card {

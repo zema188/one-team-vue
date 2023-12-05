@@ -1,7 +1,9 @@
 <script setup>
-const btns = ref([1,2,3])
-let activePage = ref(2)
 const props = defineProps({
+    info: {
+        type: Object,
+        required: true
+    },
     type: {
         type: String,
         required: false
@@ -16,18 +18,22 @@ const props = defineProps({
         <button class="text">
             Назад
         </button>
-        <button
-            v-for="btn of btns" :key="btn"
-            class="number"
-            :class="{active: btn === activePage}"
+        <button class="number"
+            :class="{active: 1 === props.info.current_page}"
         >
-            {{ btn }}
+            1
+        </button>
+        <button
+            class="number"
+            :class="{active: btn === props.info.current_page}"
+        >
+            2
         </button>
         <span>
             ...
         </span>
-        <button class="number">
-            20
+        <button class="number" v-if="props.info.last_page !== 1">
+            {{ props.info.last_page }}
         </button>
         <button class="text">
             Вперед

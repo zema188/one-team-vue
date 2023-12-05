@@ -1,12 +1,13 @@
 export default function useCatalog() {
-    function changeCatalog(btn, catalog) {
-        catalog.filterList.forEach(el => {
+    function changeCatalog(btn, data) {
+      console.log('catalog',data)
+        data.filter.forEach(el => {
             if(el.active) {
                 el.active = false
             }
         });
-        const index = catalog.filterList.findIndex(obj => obj.text === btn.text);
-        catalog.activeSlide = index
+        const index = data.filter.findIndex(obj => obj.name === btn.name);
+        data.activeSlide = index
         btn.active = true
     }
 

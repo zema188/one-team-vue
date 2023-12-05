@@ -2,11 +2,41 @@
 let sortIsActive = ref(false)
 const filter = ref(['По популярности', 'По площади', 'По цене м²', 'Новые'])
 
-let objects = ref([
-    {
 
+const { $axiosPlugin } = useNuxtApp()
+const route = useRoute()
+
+const objects = ref({})
+const paginationInfo = ref({})
+const getObjects = async() => {
+    try {
+        let url = null
+        if(route.params.region) {
+            // url = `https://one-team.pro/api/houses/catalog?country=${route.params.country}&page=${route.query.page}`
+        } else if(route.params.city) {
+            url = `https://one-team.pro/api/houses/catalog?city=${route.params.city}&page=${route.query.page}`
+        } else {
+            url = `https://one-team.pro/api/houses/catalog?country=${route.params.country}&page=${route.query.page}`
+        }
+        const response = await $axiosPlugin.get(url)
+        objects.value = {...response.data}
+        paginationInfo.value = {
+            current_page: response.data.current_page,
+            from: response.data.from,
+            last_page: response.data.last_page,
+            per_page: response.data.per_page,
+            to: response.data.to,
+            total: response.data.total,
+        }
+        console.log(objects.value)
+    } catch (err) {
+        console.error(err)
     }
-])
+}
+
+onMounted(() => {
+    getObjects()
+})
 
 </script>
 
@@ -30,6 +60,7 @@ let objects = ref([
         </div>
         <div class="filter-block">
             <list-pagination
+                :info="paginationInfo"
                 :type="'circle'"
             />
             <div class="sort">
@@ -58,10 +89,12 @@ let objects = ref([
         </div>
         <div class="list">
             <list-card
-                v-for="test of [1,2,3,4,5]" :key="test"
+                v-for="object of objects.data" :key="object.id" :object="object"
             />
         </div>
-        <list-pagination style="margin: 10px auto 0; width: fit-content;"/>
+        <list-pagination style="margin: 10px auto 0; width: fit-content;"
+            :info="paginationInfo"
+        />
     </div>
 </template>
 

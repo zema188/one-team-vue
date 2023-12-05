@@ -6,7 +6,6 @@ let slidePerView = ref(4)
 let spaceBetween = ref(25)
 
 const onSwiper = (swiper) => {
-  console.log(swiper);
 };
 
 const onSlideChange = () => {

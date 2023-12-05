@@ -12,6 +12,12 @@ export default {
     Swiper,
     SwiperSlide,
   },
+  props: {
+    layouts: {
+        type: Array,
+        required: true
+    }
+  },
   setup() {
     const thumbsSwiper = ref(null);
 
@@ -61,32 +67,10 @@ export default {
       :modules="modules"
       class="small"
     >
-        <swiper-slide>
-            <img src="@/assets/images/lay-1.webp"/>
-        </swiper-slide>
-        <swiper-slide>
-            <img src="@/assets/images/lay-2.webp"/>
-        </swiper-slide>
-        <swiper-slide>
-            <img src="@/assets/images/lay-3.webp"/>
-        </swiper-slide>
-        <swiper-slide>
-            <img src="@/assets/images/lay-4.webp"/>
-        </swiper-slide>
-        <swiper-slide>
-            <img src="@/assets/images/lay-5.webp"/>
-        </swiper-slide>
-        <swiper-slide>
-            <img src="@/assets/images/lay-6.webp"/>
-        </swiper-slide>
-        <swiper-slide>
-            <img src="@/assets/images/lay-7.webp"/>
-        </swiper-slide>
-        <swiper-slide>
-            <img src="@/assets/images/lay-8.webp"/>
-        </swiper-slide>
-        <swiper-slide>
-            <img src="@/assets/images/lay-9.webp"/>
+        <swiper-slide
+            v-for="layout in layouts" :key="layout.id"
+        >
+            <img :src="`https://one-team.pro/${layout.photos[0].url}`"/>
         </swiper-slide>
     </swiper>
     <swiper
@@ -100,32 +84,10 @@ export default {
       :modules="modules"
       class="big"
     >
-        <swiper-slide>
-            <img src="@/assets/images/lay-1.webp"/>
-        </swiper-slide>
-        <swiper-slide>
-            <img src="@/assets/images/lay-2.webp"/>
-        </swiper-slide>
-        <swiper-slide>
-            <img src="@/assets/images/lay-3.webp"/>
-        </swiper-slide>
-        <swiper-slide>
-            <img src="@/assets/images/lay-4.webp"/>
-        </swiper-slide>
-        <swiper-slide>
-            <img src="@/assets/images/lay-5.webp"/>
-        </swiper-slide>
-        <swiper-slide>
-            <img src="@/assets/images/lay-6.webp"/>
-        </swiper-slide>
-        <swiper-slide>
-            <img src="@/assets/images/lay-7.webp"/>
-        </swiper-slide>
-        <swiper-slide>
-            <img src="@/assets/images/lay-8.webp"/>
-        </swiper-slide>
-        <swiper-slide>
-            <img src="@/assets/images/lay-9.webp"/>
+        <swiper-slide
+            v-for="layout in layouts" :key="layout.id"
+        >
+            <img :src="`https://one-team.pro/${layout.photos[0].url}`"/>
         </swiper-slide>
     </swiper>
 </template>
@@ -156,6 +118,7 @@ export default {
 }
 
 .small {
+    margin-bottom: 20px;
     & .swiper-slide {
         height: 60px;
         width: 60px;

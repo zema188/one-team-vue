@@ -19,6 +19,7 @@ onMounted(() => {
     <main>
       <NuxtPage/>
     </main>
+    <!-- <popup/> -->
     <Footer/>
   </div>
 </template>

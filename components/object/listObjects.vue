@@ -3,7 +3,11 @@ const props = defineProps({
     typeObject: {
         type: String,
         required: true,
-    }
+    },
+    objects: {
+        type: Array,
+        required: true,
+    },
 })
 </script>
 
@@ -25,7 +29,8 @@ const props = defineProps({
             v-if="props.typeObject === 'big'"
         >
             <object-list-item
-                v-for="(card, index) of [1,2,3,4,5,6]" :key="index"
+                v-for="object of objects" :key="object.id"
+                :object="object"
             />
         </div>
         <div class="list"
@@ -33,7 +38,8 @@ const props = defineProps({
             :class="props.typeObject"
         >
             <object-list-item-small
-                v-for="(card, index) of [1,2,3,4,5,6]" :key="index"
+                v-for="object of objects" :key="object.id"
+                :object="object"
             />
         </div>
     </div>

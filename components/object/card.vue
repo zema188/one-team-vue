@@ -1,6 +1,10 @@
 <script setup>
-const { $axiosPlugin } = useNuxtApp()
-const route = useRoute()
+const props = defineProps({
+    object: {
+        type: Object,
+        required: true
+    }
+})
 
 let activeBlock = ref('photos')
 const contentNav = ref([
@@ -47,17 +51,6 @@ const footerNav = ref([
     },
 ])
 
-const object = ref({})
-const getObject = async() => {
-    try {
-        const url = `https://one-team.pro/api/houses/simple?country=${route.params.country}&id=${route.params.id}&locale=ru`
-        const response = await $axiosPlugin.get(url)
-        object.value = {...response.data}
-        console.log(object.value)
-    } catch (err) {
-        console.error(err)
-    }
-}
 const activeValute = ref('EUR')
 const valutes = ref([
     {
@@ -83,24 +76,19 @@ const valutes = ref([
 ])
 
 const minSquareObject = computed(() => {
-    if(!object.value.layouts) return ''
-    return Math.min(...object.value.layouts.map(layout => layout.total_size))
+    if(!props.object.layouts) return ''
+    return Math.min(...props.object.layouts.map(layout => layout.total_size))
 })
 
 const maxSquareObject = computed(() => {
-    if(!object.value.layouts) return ''
-    return Math.max(...object.value.layouts.map(layout => layout.total_size))
+    if(!props.object.layouts) return ''
+    return Math.max(...props.object.layouts.map(layout => layout.total_size))
 })
 
 const buildLinkCountry = computed(() => {
-    if(!object.value.country) return ''
-    const link = `/locations/${object.value.country.slug}`;
+    if(!props.object.country) return ''
+    const link = `/locations/${props.object.country.slug}`;
     return link;
-})
-
-onMounted(() => {
-    console.log(buildLinkCountry)
-    getObject()
 })
 
 </script>
@@ -110,17 +98,17 @@ onMounted(() => {
         <div class="object__nav">
             <nuxt-link class="object__nav-item" to="/">Главная</nuxt-link>
             <nuxt-link class="object__nav-item" :to="buildLinkCountry"
-                v-if="object.country"
+                v-if="props.object.country"
             >
-                {{ object.country.name }}
+                {{ props.object.country.name }}
             </nuxt-link>
             <nuxt-link class="object__nav-item" to="">
-                {{ object.address }}
+                {{ props.object.address }}
             </nuxt-link>
         </div>
         <div class="object__name">
             <!-- Виллы в Richmond Villas, в городе Аланья -->
-            {{ object.name }}
+            {{ props.object.name }}
         </div>
         <div class="object__body">
             <div class="object__content">
@@ -136,17 +124,19 @@ onMounted(() => {
                 <div class="object__block">
                     <object-photo-swiper
                         v-if="activeBlock === 'photos'"
-                        :photos="object.photo"
+                        :photos="props.object.photo"
                     />
                     <object-layouts-swiper
                         v-if="activeBlock === 'layouts'"
-                        :layouts="object.layouts"
+                        :layouts="props.object.layouts"
                     />
                     <object-videos
                         v-if="activeBlock === 'videos'"
                     />
                     <object-prices
                         v-if="activeBlock === 'prices'"
+                        :layouts="props.object.layouts"
+                        :activeValute="activeValute"
                     />
                 </div>
                 <div class="object__text">
@@ -200,14 +190,14 @@ onMounted(() => {
                             </p>
                         </div>
                     </div>
-                    <div class="object__lead">
+                    <div class="object__lead" v-if="props.object.parking">
                         <img src="@/assets/images/advantages-5.svg">
                         <div>
                             <span>
                                 Паркинг:
                             </span>
                             <p>
-                                Крытая
+                                {{ props.object.parking }}
                             </p>
                         </div>
                     </div>
@@ -255,14 +245,15 @@ onMounted(() => {
                             </p>
                         </div>
                     </div>
-                    <div class="object__lead">
+                    <div class="object__lead" v-if="props.object.do_more">
                         <img src="@/assets/images/advantages-9.svg">
                         <div>
                             <span>
                                 До моря:
                             </span>
                             <p>
-                                2000 м
+                                <!-- 2000 м -->
+                                {{ props.object.do_more }}
                             </p>
                         </div>
                     </div>
@@ -277,14 +268,14 @@ onMounted(() => {
                             </p>
                         </div>
                     </div>
-                    <div class="object__lead">
+                    <div class="object__lead" v-if="props.object.type_vid">
                         <img src="@/assets/images/svg-1.svg">
                         <div>
                             <span>
-                                Вид на море:
+                                Вид на:
                             </span>
                             <p>
-                                Да
+                                {{ props.object.type_vid }}
                             </p>
                         </div>
                     </div>
@@ -346,14 +337,13 @@ onMounted(() => {
                     </div>
                 </div>
                 <div class="aside__info">
-                    <div class="aside__info-price" v-if="object.price">
-                        <span>
+                    <div class="aside__info-price" v-if="props.object.price">
+                        <span class="valute">
                             <!-- от 1110439 $ -->
-                            {{ object.price[activeValute] }}
+                            {{ props.object.price[activeValute] }}
                         </span>
                         <p>
-                            4143 $/м
-                            <sup>2</sup>
+                            {{ props.object.size[activeValute] }}м<sup>2</sup>
                         </p>
                     </div>
                     <div class="aside__hashtags">
@@ -381,21 +371,21 @@ onMounted(() => {
                 </div>
                 <div class="aside__list">
                     <div class="aside__list-body">
-                        <div class="aside__list-item" v-if="object.country">
+                        <div class="aside__list-item" v-if="props.object.country">
                             <span>
                                 Локация:
                             </span>
                             <p>
                                 <!-- Аланья, район Каргыджак -->
-                                {{ object.country.name }}
+                                {{ props.object.country.name }}
                             </p>
                         </div>
-                        <div class="aside__list-item">
+                        <div class="aside__list-item" v-if="props.object.do_more">
                             <span>
                                 До моря:
                             </span>
                             <p>
-                                2000 м
+                                {{ props.object.do_more }}
                             </p>
                         </div>
                         <div class="aside__list-item">
@@ -455,18 +445,18 @@ onMounted(() => {
         <div class="object__footer-block">
             <object-details
                 v-if="activeFooterBlock === 'details'"
-                :description="object.description"
-                :objectName="object.name"
-                :photos="object.photo"
+                :description="props.object.description"
+                :objectName="props.object.name"
+                :photos="props.object.photo"
             />
             <object-description
                 v-if="activeFooterBlock === 'description'"
-                :description="object.description"
+                :description="props.object.description"
             />
             <object-map
                 v-if="activeFooterBlock === 'map'"
-                :lat="object.lat"
-                :long="object.long"
+                :lat="props.object.lat"
+                :long="props.object.long"
             />
         </div>
     </div>

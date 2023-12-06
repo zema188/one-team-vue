@@ -1,17 +1,31 @@
 <script setup>
+const props = defineProps({
+    object: {
+        type: Object,
+        required: true,
+    },
+})
+
+const buildLinkCountry = computed(() => {
+    if(!props.object.country) return ''
+    const link = `/${props.object.country.slug}/object-${props.object.id}`;
+    return link;
+})
+
 
 </script>
 
 <template>
-    <div class="list__item">
-        <img class="bg" src="@/assets/images/cat.webp">
+    <nuxt-link :to="buildLinkCountry" class="list__item">
+        <img class="bg"
+            :src="`https://one-team.pro/${props.object.photos[0].preview}`">
         <div class="list__item-header">
             <div class="list__item-hashtag">
                 <span class="hashtag">
                     До моря 1500 м
                 </span>
                 <p class="hashtag">
-                    Аланья
+                    {{ props.object.city.name }}
                 </p>
             </div>
             <icons-base
@@ -23,15 +37,15 @@
         </div>
         <div class="list__item-text">
             <p class="name">
-                MILANO RESIDENCE
+                {{ props.object.name }}
             </p>
             <p class="square">
                 от 50 - до 102 м
             </p>
         </div>
         <div class="list__item-footer">
-            <p class="list__item-price">
-                от 216000 $
+            <p class="list__item-price valute">
+                {{ props.object.min_price }} €
             </p>
             <p class="list__item-footer-hashtags">
                 <span class="blue hashtag">
@@ -42,7 +56,7 @@
                 </span>
             </p>
         </div>
-    </div>
+    </nuxt-link>
 </template>
 
 <style lang="scss" scoped>

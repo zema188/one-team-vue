@@ -23,8 +23,7 @@ const props = defineProps({
 </script>
 
 <template>
-    
-    <div class="card">
+    <nuxt-link :to="`/${props.object.country.slug}/object-${props.object.id}`" class="card">
         <img class="card__pic"
         v-if=props.object.photos
             :src="`https://one-team.pro/${props.object.photos[0].preview}`"
@@ -32,7 +31,7 @@ const props = defineProps({
         <div class="card__header">
             <div class="card__hashtags">
                 <div class="card__hashtag _blue">
-                    {{ props.object.city }}
+                    {{ props.object.city.name }}
                 </div>
                 <!-- <div class="card__hashtag">
                     {{  props.object.region }}
@@ -74,7 +73,7 @@ const props = defineProps({
                 </span>
             </div>
         </div>
-    </div>
+    </nuxt-link>
 </template>
 
     

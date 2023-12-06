@@ -1,5 +1,14 @@
 <script setup>
-
+const props = defineProps({
+    layouts: {
+        type: Array,
+        required: true
+    },
+    activeValute: {
+        type: String,
+        required: true
+    }
+})
 </script>
 
 <template>
@@ -29,16 +38,16 @@
             </div>
             <div class="table__content">
                 <div class="row line"
-                    v-for="(object, index) in [1,2,3,4,5,6]" :key="index"
+                    v-for="layout in props.layouts" :key="layout.id"
                 >
                     <div class="item">
                         <span>
-                            Виллы
+                            {{ layout.building }}
                         </span>
                     </div>
                     <div class="item">
                         <span>
-                            268 м
+                            {{ layout.total_size }} кв.м
                         </span>
                     </div>
                     <div class="item">
@@ -48,7 +57,7 @@
                     </div>
                     <div class="item">
                         <span>
-                            1110439 $
+                            {{ layout.price[props.activeValute] }}
                         </span>
                     </div>
                 </div>

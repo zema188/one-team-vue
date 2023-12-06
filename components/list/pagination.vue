@@ -9,33 +9,82 @@ const props = defineProps({
         required: false
     }
 })
+
+const emit = defineEmits(['changePage'])
+
+const nextPage = () => {
+    emit('changePage', props.info.current_page + 1)
+}
+
+const prevPage = () => {
+    emit('changePage', props.info.current_page - 1)
+}
+
+const changePageByNumber = (numberPage) => {
+    emit('changePage', numberPage)
+}
 </script>
 
 <template>
     <div class="pagination"
         :class="{circle: props.type === 'circle'}"
+        v-if="props.info.current_page !== props.info.last_page"
     >
-        <button class="text">
+        <button class="text"
+            v-if="props.info.current_page !== 1"
+            @click="prevPage()"
+        >
             Назад
         </button>
         <button class="number"
             :class="{active: 1 === props.info.current_page}"
+            @click="changePageByNumber(1)"
         >
             1
         </button>
-        <button
-            class="number"
-            :class="{active: btn === props.info.current_page}"
+        <span
+            v-if="props.info.current_page !== 1 && props.info.current_page !== 2"
         >
-            2
-        </button>
-        <span>
             ...
         </span>
-        <button class="number" v-if="props.info.last_page !== 1">
+        <button
+            class="number"
+            v-if="props.info.current_page !== 1 && props.info.current_page !== 2"
+            @click="changePageByNumber(props.info.current_page - 1)"
+        >
+            {{ props.info.current_page - 1}}
+        </button>
+        <button
+            class="number active"
+            v-if="props.info.current_page !== 1"
+            @click="changePageByNumber(props.info.current_page)"
+        >
+            {{ props.info.current_page }}
+        </button>
+        <button
+            class="number"
+            v-if="props.info.current_page + 1 !== props.info.last_page && props.info.current_page !== props.info.last_page"
+            @click="changePageByNumber(props.info.current_page + 1)"
+        >
+            {{ props.info.current_page + 1}}
+        </button>
+        <span
+            v-if="props.info.current_page + 1 !== props.info.last_page && props.info.current_page !== props.info.last_page"
+        >
+            ...
+        </span>
+        <button
+            class="number"
+            :class="{active: props.info.last_page === props.info.current_page}"
+            v-if="props.info.last_page !== 1 && props.info.last_page !== props.info.current_page"
+            @click="changePageByNumber(props.info.last_page)"
+        >
             {{ props.info.last_page }}
         </button>
-        <button class="text">
+        <button class="text"
+            @click="nextPage()"
+            v-if="props.info.last_page !== props.info.current_page"
+        >
             Вперед
         </button>
     </div>

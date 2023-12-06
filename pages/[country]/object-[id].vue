@@ -1,6 +1,8 @@
 <script setup>
 import useCatalog from '@/mixins.js/catalog.js';
+const { $axiosPlugin } = useNuxtApp()
 const { changeCatalog, getFormattedDate } = useCatalog();
+const route = useRoute()
 
 const catalogLocations = ref({
     objects: [
@@ -78,10 +80,33 @@ const catalogPrice = ref({
         },
     ],
 })
+
+const object = ref({})
+const bestObjects = ref([])
+const commissionedObjects = ref([])
+const getObject = async() => {
+    try {
+        const url = `https://one-team.pro/api/houses/detail?country=${route.params.country}&id=${route.params.id}&locale=ru`
+        const response = await $axiosPlugin.get(url)
+        object.value = {...response.data.detail}
+        bestObjects.value = [...response.data.the_best]
+        commissionedObjects.value = [...response.data.commissioned]
+        console.log(response.data)
+    } catch (err) {
+        console.error(err)
+    }
+}
+
+
+onMounted(() => {
+    getObject()
+})
 </script>
 
 <template>
-    <object-card/>
+    <object-card
+        :object="object"
+    />
     <catalog-location
         :title="'Свежие каталоги по локациям'"
         :subtitle="'Обновлено ' + new Date().toLocaleDateString()"
@@ -105,6 +130,7 @@ const catalogPrice = ref({
     <why/>
     <object-list-objects
         :typeObject="'big'"
+        :objects="bestObjects"
     >
         <template v-slot:title>
             Лучшие объекты
@@ -115,6 +141,7 @@ const catalogPrice = ref({
     </object-list-objects>
     <object-list-objects
         :typeObject="'small'"
+        :objects="commissionedObjects"
     >
         <template v-slot:title>
             Сданные объекты

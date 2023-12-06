@@ -5,6 +5,7 @@ const filter = ref(['По популярности', 'По площади', 'П�
 
 const { $axiosPlugin } = useNuxtApp()
 const route = useRoute()
+const router = useRouter()
 
 const objects = ref({})
 const paginationInfo = ref({})
@@ -19,7 +20,9 @@ const getObjects = async() => {
             url = `https://one-team.pro/api/houses/catalog?country=${route.params.country}&page=${route.query.page}`
         }
         const response = await $axiosPlugin.get(url)
+        objects.value.length = 0
         objects.value = {...response.data}
+        paginationInfo.value.length = 0
         paginationInfo.value = {
             current_page: response.data.current_page,
             from: response.data.from,
@@ -32,6 +35,16 @@ const getObjects = async() => {
     } catch (err) {
         console.error(err)
     }
+}
+
+
+const changePage = async (numberPage) => {
+    await router.push({
+        query: {
+            page: numberPage
+        }
+    })
+    getObjects()
 }
 
 onMounted(() => {
@@ -62,6 +75,7 @@ onMounted(() => {
             <list-pagination
                 :info="paginationInfo"
                 :type="'circle'"
+                @changePage="(numberPage) => changePage(numberPage)"
             />
             <div class="sort">
                 <div class="sort__header"
@@ -94,6 +108,7 @@ onMounted(() => {
         </div>
         <list-pagination style="margin: 10px auto 0; width: fit-content;"
             :info="paginationInfo"
+            @changePage="(numberPage) => changePage(numberPage)"
         />
     </div>
 </template>
@@ -150,6 +165,7 @@ onMounted(() => {
 .sort {
     position: relative;
     padding-top: 10px;
+    margin-left: auto;
     @media (max-width: 539px) {
         margin: 0 0 0 auto;
     }

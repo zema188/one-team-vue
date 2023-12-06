@@ -1,5 +1,11 @@
 <script setup>
-
+const props = defineProps({
+    catalogData: {
+        type: Object,
+        required: true
+    }
+})
+const route = useRoute()
 </script>
 
 <template>
@@ -11,9 +17,14 @@
                     Каталог недвижимости
                 </p>
                 <div class="preview__text-header">
-                    <p>
-                        Турции
-                    </p>
+                    <div v-if="props.catalogData.data">
+                        <p v-if="route.params.city">
+                            {{ props.catalogData.data[0].city.name }}
+                        </p>
+                        <p v-else-if="route.params.country">
+                            {{ props.catalogData.data[0].country.name }}
+                        </p>
+                    </div>
                     <icons-base
                         class="icon"
                         width="40"

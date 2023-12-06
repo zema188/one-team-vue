@@ -39,31 +39,35 @@ watch(() => {
             </template>
         </layouts-block-header>
         <layouts-filter-list
-            :list="props.data.filterList"
+            :list="props.data.filter"
             :style="filterStyle"
             @changeFilter="(btn) => emit('changeFilter', btn)"
         />
-        <div class="filter-regions">
+        <!-- <div class="filter-regions">
             <layouts-button
-                v-for="(region, index) of props.data.regions" :key="index"
+                v-for="(region, index) of props.data.filter.cities" :key="index"
                 class="filter-regions__btn"
                 :styles="[{btn_blue: index === 0}]"
                 :type="'button'"
             >
-                {{ region }}
+            {{ region.name }}
             </layouts-button>
-        </div>
+        </div> -->
         <swiper
             :slides-per-view="1"
             :space-between="10"
             @swiper="onSwiper"
+            :allowTouchMove="false"
         >
             <swiper-slide class="slide"
-                v-for="(card, index) of [1,2,3,4,5]" :key="index"
+                v-for="(card, index) of props.data.filter" :key="index"
             >
-            <catalog-location-swiper
-                :objects="props.data.objects"
-            />
+                <span v-if="!card.cities.length">
+                    скоро открытие
+                </span>
+                <catalog-location-swiper
+                    :objects="card"
+                />
             </swiper-slide>
         </swiper>
 

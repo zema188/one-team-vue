@@ -1,55 +1,27 @@
 <script setup>
+
+const props = defineProps({
+    objects: {
+        type: Array,
+        required: true
+    },
+    paginationInfo: {
+        type: Object,
+        required: true
+    },
+})
+const emit = defineEmits(['changePage', 'openMap'])
+
 let sortIsActive = ref(false)
 const filter = ref(['По популярности', 'По площади', 'По цене м²', 'Новые'])
 
-
-const { $axiosPlugin } = useNuxtApp()
-const route = useRoute()
-const router = useRouter()
-
-const objects = ref({})
-const paginationInfo = ref({})
-const getObjects = async() => {
-    try {
-        let url = null
-        if(route.params.region) {
-            // url = `https://one-team.pro/api/houses/catalog?country=${route.params.country}&page=${route.query.page}`
-        } else if(route.params.city) {
-            url = `https://one-team.pro/api/houses/catalog?city=${route.params.city}&page=${route.query.page}`
-        } else {
-            url = `https://one-team.pro/api/houses/catalog?country=${route.params.country}&page=${route.query.page}`
-        }
-        const response = await $axiosPlugin.get(url)
-        objects.value.length = 0
-        objects.value = {...response.data}
-        paginationInfo.value.length = 0
-        paginationInfo.value = {
-            current_page: response.data.current_page,
-            from: response.data.from,
-            last_page: response.data.last_page,
-            per_page: response.data.per_page,
-            to: response.data.to,
-            total: response.data.total,
-        }
-        console.log(objects.value)
-    } catch (err) {
-        console.error(err)
-    }
+const changePage = (numberPage) => {
+    emit('changePage', numberPage)
 }
 
-
-const changePage = async (numberPage) => {
-    await router.push({
-        query: {
-            page: numberPage
-        }
-    })
-    getObjects()
+const openMap = () => {
+    emit('openMap')
 }
-
-onMounted(() => {
-    getObjects()
-})
 
 </script>
 
@@ -64,7 +36,9 @@ onMounted(() => {
                     iconColor="#fff"
                 ><icons-filter /></icons-base>
             </div>
-            <button class="action__item">
+            <button class="action__item"
+                @click="openMap()"
+            >
                 Карта
             </button>
             <button class="action__item">
@@ -73,7 +47,7 @@ onMounted(() => {
         </div>
         <div class="filter-block">
             <list-pagination
-                :info="paginationInfo"
+                :info="props.paginationInfo"
                 :type="'circle'"
                 @changePage="(numberPage) => changePage(numberPage)"
             />
@@ -103,11 +77,11 @@ onMounted(() => {
         </div>
         <div class="list">
             <list-card
-                v-for="object of objects.data" :key="object.id" :object="object"
+                v-for="object of props.objects" :key="object.id" :object="object"
             />
         </div>
         <list-pagination style="margin: 10px auto 0; width: fit-content;"
-            :info="paginationInfo"
+            :info="props.paginationInfo"
             @changePage="(numberPage) => changePage(numberPage)"
         />
     </div>

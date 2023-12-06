@@ -40,7 +40,7 @@ watch(() => {
             </template>
         </layouts-block-header>
         <layouts-filter-list
-            :list="props.data.filterList"
+            :list="props.data.filter"
             :style="props.filterStyle"
             @changeFilter="(btn) => emit('changeFilter', btn)"
         />
@@ -50,10 +50,10 @@ watch(() => {
             @swiper="onSwiper"
         >
             <swiper-slide class="slide"
-                v-for="(card, index) of [1,2,3,4,5]" :key="index"
+                v-for="(object, index) of props.data.filter" :key="index"
             >
                 <instruction-swiper
-                    :name="'Аланья'"
+                    :object=object
                 />
             </swiper-slide>
         </swiper>

@@ -28,7 +28,7 @@ const changePageByNumber = (numberPage) => {
 <template>
     <div class="pagination"
         :class="{circle: props.type === 'circle'}"
-        v-if="props.info.current_page !== props.info.last_page"
+        v-if="props.info.last_page !== 1"
     >
         <button class="text"
             v-if="props.info.current_page !== 1"

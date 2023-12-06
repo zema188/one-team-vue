@@ -3,16 +3,13 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
 let slidePerView = ref(4)
 let spaceBetween = ref(30)
-const onSwiper = (swiper) => {
-  console.log(swiper);
-};
 
 const onSlideChange = () => {
   console.log('slide change');
 };
 
 defineProps({
-  name: {
+  object: {
     type: String,
     required: true
   },
@@ -55,7 +52,7 @@ onMounted(() => {
         </span>
       </p>
       <p class="desc">
-        Правильные шаги по покупке в {{ name }}
+        Правильные шаги по покупке в {{ object.name }}
       </p>
       <layouts-button
           class="header__bottom-get-catalog"
@@ -73,7 +70,7 @@ onMounted(() => {
         </span>
       </p>
       <p class="desc">
-        Сравнение локаций и районов по {{ name }}
+        Сравнение локаций и районов по {{ object.name }}
       </p>
       <layouts-button
           class="header__bottom-get-catalog"
@@ -87,7 +84,7 @@ onMounted(() => {
       <p class="title">
         Чек-лист
         <span>
-          {{ name }}
+          {{ object.name }}
         </span>
       </p>
       <p class="desc">
@@ -110,7 +107,7 @@ onMounted(() => {
         ><icons-arrow-white /></icons-base>
       </button>
       <span>
-        Скачать все файлы по {{ name }}
+        Скачать все файлы по {{ object.name }}
       </span>
     </swiper-slide>
   </swiper>

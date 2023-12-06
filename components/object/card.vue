@@ -458,6 +458,11 @@ const buildLinkCountry = computed(() => {
                 :lat="props.object.lat"
                 :long="props.object.long"
             />
+            <object-infrastructure
+                v-if="activeFooterBlock === 'infrastructure'"
+                :lat="props.object.lat"
+                :long="props.object.long"
+            />
         </div>
     </div>
 </template>

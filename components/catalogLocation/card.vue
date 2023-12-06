@@ -1,4 +1,6 @@
 <script setup>
+import useCatalog from '@/mixins.js/catalog.js';
+const { getFormattedDate } = useCatalog();
 const props = defineProps({
     info: {
         type: Object,
@@ -26,7 +28,7 @@ const props = defineProps({
                 Каталог {{ props.info.name }}
             </p>
             <span>
-                Обновлен {{ props.info.date }}
+                Обновлен {{ getFormattedDate()}}
             </span>
         </div>
         <layouts-button

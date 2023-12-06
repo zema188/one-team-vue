@@ -55,7 +55,7 @@ const props = defineProps({
                             1
                         </span>
                     </div>
-                    <div class="item">
+                    <div class="item valute">
                         <span>
                             {{ layout.price[props.activeValute] }}
                         </span>
@@ -125,7 +125,7 @@ const props = defineProps({
 }
 .item {
     margin-bottom: 20px;
-    flex: 0 0 calc(25% - 0px);
+    flex: 0 0 calc(25% - 7px);
     @media (max-width: 767px) {
         flex: 0 0 100px;
     }

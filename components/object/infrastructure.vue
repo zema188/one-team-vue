@@ -9,10 +9,17 @@ const props = defineProps({
         required: true
     }
 })
+
+
 const coordinates = [props.lat, props.long]
-const controls = ['fullscreenControl'];
+const controls =
+    [
+        'fullscreenControl',
+        'searchControl',
+        'zoomControl',
+    ]
 const detailedControls = { zoomControl: { position: { right: 10, top: 50 } } };
-const behaviors = ['drag', 'dblClickZoom'];
+const behaviors = ['drag', 'dblClickZoom',];
 </script>
 <template>
     <YandexMap
@@ -20,6 +27,7 @@ const behaviors = ['drag', 'dblClickZoom'];
         :detailed-controls="detailedControls"
         :controls="controls"
         :behaviors="behaviors"
+        :search-control="searchConrol"
     >
         <YandexMarker :coordinates="coordinates" :marker-id="1">
         </YandexMarker>
@@ -30,6 +38,6 @@ const behaviors = ['drag', 'dblClickZoom'];
 
 <style>
 .yandex-container {
-    height: 400px;
+height: 400px;
 }
 </style>

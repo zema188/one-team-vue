@@ -41,6 +41,9 @@ export default {
       }
     };
 
+    const prev = ref(null);
+    const next = ref(null);
+
     onMounted(() => {
       resizeSwiper();
       window.addEventListener('resize', resizeSwiper);
@@ -52,34 +55,40 @@ export default {
       slidePerView,
       spaceBetween,
       modules: [FreeMode, Navigation, Thumbs],
+      prev,
+      next,
     };
   },
 };
 </script>
   
 <template>
+  <swiper
+    @swiper="setThumbsSwiper"
+    :spaceBetween="spaceBetween"
+    :slidesPerView="slidePerView"
+    :freeMode="true"
+    :watchSlidesProgress="true"
+    :modules="modules"
+    class="small"
+  >
+      <swiper-slide
+          v-for="layout in layouts" :key="layout.id"
+      >
+          <img :src="`https://one-team.pro/${layout.photos[0].url}`"/>
+      </swiper-slide>
+  </swiper>
+  <div class="swiper-w">
     <swiper
-      @swiper="setThumbsSwiper"
-      :spaceBetween="spaceBetween"
-      :slidesPerView="slidePerView"
-      :freeMode="true"
-      :watchSlidesProgress="true"
-      :modules="modules"
-      class="small"
-    >
-        <swiper-slide
-            v-for="layout in layouts" :key="layout.id"
-        >
-            <img :src="`https://one-team.pro/${layout.photos[0].url}`"/>
-        </swiper-slide>
-    </swiper>
-    <swiper
+      :navigation="{
+        prevEl: prev,
+        nextEl: next,
+      }"
       :style="{
         '--swiper-navigation-color': '#fff',
         '--swiper-pagination-color': '#fff',
       }"
       :spaceBetween="10"
-      :navigation="true"
       :thumbs="{ swiper: thumbsSwiper }"
       :modules="modules"
       class="big"
@@ -90,9 +99,15 @@ export default {
             <img :src="`https://one-team.pro/${layout.photos[0].url}`"/>
         </swiper-slide>
     </swiper>
+    <div ref="prev" class="swiper-button swiper-button-prev"></div>
+    <div ref="next" class="swiper-button swiper-button-next"></div>
+  </div>
 </template>
 
 <style scoped lang="scss">
+.swiper-w {
+  position: relative;
+}
 .big {
     border-radius: 20px;
     margin-bottom: 10px;
@@ -148,4 +163,21 @@ export default {
         }
     }
 }
+
+
+.swiper-button {
+  background: rgba(255,255,255, 0.5);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &::after {
+    color: var(--var-blue);
+    font-size: 30px;
+  }
+}
+
+
 </style>

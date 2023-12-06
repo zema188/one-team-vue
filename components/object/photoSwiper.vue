@@ -42,6 +42,9 @@ export default {
       }
     };
 
+    const prev = ref(null);
+    const next = ref(null);
+
     onMounted(() => {
       resizeSwiper();
       window.addEventListener('resize', resizeSwiper);
@@ -53,6 +56,8 @@ export default {
       modules: [FreeMode, Navigation, Thumbs],
       slidePerView,
       spaceBetween,
+      prev,
+      next,
     };
   },
 };
@@ -60,13 +65,17 @@ export default {
 
   
 <template>
+  <div class="swiper-w">
     <swiper
+      :navigation="{
+        prevEl: prev,
+        nextEl: next,
+      }"
       :style="{
         '--swiper-navigation-color': '#fff',
         '--swiper-pagination-color': '#fff',
       }"
       :spaceBetween="10"
-      :navigation="true"
       :thumbs="{ swiper: thumbsSwiper }"
       :modules="modules"
       class="big"
@@ -77,6 +86,9 @@ export default {
             <img :src="`https://one-team.pro/${photo.preview}`"/>
         </swiper-slide>
     </swiper>
+    <div ref="prev" class="swiper-button swiper-button-prev"></div>
+    <div ref="next" class="swiper-button swiper-button-next"></div>
+  </div>
     <swiper
       @swiper="setThumbsSwiper"
       :spaceBetween="spaceBetween"
@@ -95,6 +107,9 @@ export default {
 </template>
 
 <style scoped lang="scss">
+.swiper-w {
+  position: relative;
+}
 .big {
     border-radius: 20px;
     margin-bottom: 10px;
@@ -157,5 +172,19 @@ export default {
             object-fit: cover;
         }
     }
+}
+
+.swiper-button {
+  background: rgba(255,255,255, 0.5);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &::after {
+    color: var(--var-blue);
+    font-size: 30px;
+  }
 }
 </style>

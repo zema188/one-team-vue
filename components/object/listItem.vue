@@ -45,7 +45,7 @@ const buildLinkCountry = computed(() => {
         </div>
         <div class="list__item-footer">
             <p class="list__item-price valute">
-                {{ props.object.min_price }} €
+                от {{ props.object.min_price }} € 
             </p>
             <p class="list__item-footer-hashtags">
                 <span class="blue hashtag">

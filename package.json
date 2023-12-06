@@ -17,9 +17,9 @@
     "vue-router": "^4.2.5"
   },
   "dependencies": {
+    "@pinia/nuxt": "^0.5.1",
     "axios": "^1.6.2",
     "body-scroll-lock": "^4.0.0-beta.0",
-    "pinia": "^2.1.7",
     "sass": "^1.43.4",
     "swiper": "^11.0.4",
     "vue-yandex-maps": "^1.1.0"

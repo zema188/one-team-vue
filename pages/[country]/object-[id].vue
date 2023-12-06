@@ -4,83 +4,6 @@ const { $axiosPlugin } = useNuxtApp()
 const { changeCatalog, getFormattedDate } = useCatalog();
 const route = useRoute()
 
-const catalogLocations = ref({
-    objects: [
-        {
-            name: 'Аланья',
-            date: '19.11.2023',
-        },
-        {
-            name: 'Анталья',
-            date: '19.11.2023',
-        },
-        {
-            name: 'Аланья',
-            date: '19.11.2023',
-        },
-        {
-            name: 'Анталья',
-            date: '19.11.2023',
-        },
-    ],
-    filterList: [
-        {
-            text: 'Южное побережье',
-            quantity: null,
-            active: true
-        },
-        {
-            text: 'Западное побережье',
-            quantity: null,
-        },
-        {
-            text: 'Северное побережье',
-            quantity: null,
-        }
-    ],
-})
-
-
-const instructions = ref({
-    filterList: [
-        {
-            text: 'Аланья',
-            quantity: 14,
-            active: true
-        },
-        {
-            text: 'Анталья',
-            quantity: 15,
-        }
-    ]
-})
-
-
-const catalogPrice = ref({
-    objects: [
-        {
-            price: '50 000 - 100 000$',
-        },
-        {
-            price: '100 000 - 250 000$',
-        },
-        {
-            price: 'от 250 000$',
-        },
-    ],
-    filterList: [
-        {
-            text: 'до 350 000 $ ',
-            quantity: null,
-            active: true
-        },
-        {
-            text: 'Премиум',
-            quantity: null,
-        },
-    ],
-})
-
 const object = ref({})
 const bestObjects = ref([])
 const commissionedObjects = ref([])
@@ -97,9 +20,79 @@ const getObject = async() => {
     }
 }
 
+const catalogLocations = ref({
+    objects: [],
+    filter: [],
+    activeSlide: 0,
+})
+
+const instructions = ref({
+    objects: [],
+    filter: [],
+    activeSlide: 0
+})
+
+const catalogPrice = ref({
+    filter: [
+        {
+            objects: [
+                {
+                    price: '50 000 - 100 000$',
+                },
+                {
+                    price: '100 000 - 250 000$',
+                },
+                {
+                    price: 'от 250 000$',
+                },
+            ],
+            name: 'до 350 000 $ ',
+            quantity: null,
+            active: true
+        },
+        {
+            objects: [
+                {
+                    price: 'от 350 000$',
+                },
+            ],
+            name: 'Премиум',
+            quantity: null,
+        },
+    ],
+})
+
+const getCountries = async() => {
+    try {
+        const url = `https://one-team.pro/api/new_site/index`
+        const response = await $axiosPlugin.get(url)
+        console.log(response.data)
+
+        // Инструкции и чек-листы По странам
+        response.data.countries.forEach(el => {
+            instructions.value.filter.push({
+                name: el.name,
+            })
+        });
+        instructions.value.filter[0].active = true
+
+        // Свежие каталоги по локациям
+        response.data.countries.forEach(el => {
+            catalogLocations.value.filter.push({
+                ...el
+            })
+        });
+        catalogLocations.value.filter[0].active = true
+
+    } catch (err) {
+        console.error(err)
+    }
+}
+
 
 onMounted(() => {
     getObject()
+    getCountries()
 })
 </script>
 
@@ -115,13 +108,13 @@ onMounted(() => {
     />
     <instruction
         :title="'Инструкции и чек-листы'"
-        :subtitle="'По локации'"
+        :subtitle="'По странам'"
         :data="instructions"
         :filterStyle="{color: '_brown-border'}"
         @changeFilter="(btn) => changeCatalog(btn, instructions)"
     />
     <catalog-val
-        :title="'Общие каталоги по стоимости'"
+        :title="'Каталоги и стоимости'"
         :subtitle="'Обновлено ' + new Date().toLocaleDateString()"
         :data="catalogPrice"
         @changeFilter="(btn) => changeCatalog(btn, catalogPrice)"

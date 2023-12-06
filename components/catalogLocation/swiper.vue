@@ -5,12 +5,7 @@ import 'swiper/css';
 let slidePerView = ref(4)
 let spaceBetween = ref(25)
 
-const onSwiper = (swiper) => {
-};
 
-const onSlideChange = () => {
-  console.log('slide change');
-};
 const props = defineProps({
     objects: {
         type: Object,
@@ -51,7 +46,7 @@ onMounted(() => {
         @slideChange="onSlideChange"
     >
         <swiper-slide class="slide"
-            v-for="(card, index) in props.objects" :key="index"
+            v-for="(card, index) in props.objects.cities" :key="index"
         >
             <catalog-location-card
                 :info="card"
@@ -63,6 +58,9 @@ onMounted(() => {
 
 
 <style lang="scss" scoped>
+.swiper {
+  border-radius: 20px;
+}
 .slide {
   height: auto;
 }
